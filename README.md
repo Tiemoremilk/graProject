@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # graProject
 =======
 # graProWebCode
@@ -47,4 +46,4 @@ npm run build
 ```shz
 npm run lint
 ```
->>>>>>> END
+
