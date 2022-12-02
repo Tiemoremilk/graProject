@@ -44,10 +44,7 @@ npm run build
 
 ### Lint with [ESLint](https://eslint.org/)
 
-```sh
+```shz
 npm run lint
 ```
-# graduation
-# graduatePro
-# graduatePro
->>>>>>> dc6d9c6... first commit
+>>>>>>> END
