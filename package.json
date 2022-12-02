@@ -1,6 +1,8 @@
 {
   "name": "graprowebcode",
   "version": "1.0.0",
+  "author":"nifeng",
+  "email":"tiemoremilk@gmail.com",
   "scripts": {
     "dev": "vite --mode development",
     "build": "vite build --mode production",
@@ -45,6 +47,5 @@
     "not ie <= 10"
   ],
   "keywords": [],
-  "author": "",
   "license": "ISC"
 }
