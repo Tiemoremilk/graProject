@@ -22,7 +22,7 @@ export interface Result<T = any> {
   data: T;
 }
 //定义类
-class Http {
+class ApiService {
   private instance: AxiosInstance;
   //构造函数进行初始化
   constructor(config: AxiosRequestConfig) {
@@ -136,4 +136,4 @@ class Http {
     return this.instance.delete(url);
   }
 }
-export default Http;
+export default ApiService;
