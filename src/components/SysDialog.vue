@@ -52,8 +52,9 @@ const onClose = () => {
     background-color: #a78b7e;
     margin-right: 0;
     .el-dialog__title {
+      padding-top: 10px;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 500;
       color: #fff;
       letter-spacing: 2px;
     }

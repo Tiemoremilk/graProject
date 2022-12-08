@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" size="default" @click="addBtn">新增</el-button>
+    <el-button color="#7A6A61" size="default" @click="addBtn">新增</el-button>
     <SysDialog
       :visible="dialog.visible"
       :height="dialog.height"
