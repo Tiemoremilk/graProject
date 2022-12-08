@@ -10,8 +10,8 @@
     </div>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="onClose">取消</el-button>
-        <el-button type="primary" @click="onConfirm">确定 </el-button>
+        <el-button color="#F5F0EA" @click="onClose">取消</el-button>
+        <el-button color="#7A6A61" @click="onConfirm">确定 </el-button>
       </span>
     </template>
   </el-dialog>
