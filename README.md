@@ -7,4 +7,3 @@
 
 ![sqlDesign](https://github.com/Tiemoremilk/graProject/blob/main/imges/sqlDesign.png)
 
-
