@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
-    "@types/node": "^16.18.3",
+    "@types/node": "^16.18.7",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
     "@vue/eslint-config-prettier": "^7.0.0",
@@ -47,5 +47,13 @@
     "not ie <= 10"
   ],
   "keywords": [],
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiemoremilk/graProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tiemoremilk/graProject/issues"
+  },
+  "homepage": "https://github.com/Tiemoremilk/graProject#readme"
 }
