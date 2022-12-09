@@ -4,30 +4,21 @@
     <SysDialog
       :visible="dialog.visible"
       :height="dialog.height"
+      :title="dialog.title"
       v-on:on-close="onClose"
       @on-confirm="onConfirm"
     >
-      <template v-slot:content>我是弹窗</template>
+      <template v-slot:content>This is Dialog</template>
     </SysDialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import SysDialog from "@/components/SysDialog.vue";
-import { reactive } from "vue";
+import sysDialog from "@/utils/sysDialog";
+const { dialog, onConfirm, onClose } = sysDialog();
 const addBtn = () => {
-  dialog.visible = true;
-};
-//弹窗
-const dialog = reactive({
-  visible: false,
-  height: 150,
-});
-const onConfirm = () => {
-  dialog.visible = false;
-};
-const onClose = () => {
-  dialog.visible = false;
+  (dialog.title = "新增"), (dialog.visible = true);
 };
 </script>
 
