@@ -6,5 +6,5 @@
 
 This is sqlDesign by powerDesign
 
-![sqlDesign](D:\桌面\graduationProject\graProject\imges\sqlDesign.png)
+![sqlDesign](https://github.com/Tiemoremilk/graProject/blob/main/imges/sqlDesign.png)
 
