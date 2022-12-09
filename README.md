@@ -3,8 +3,6 @@
   It is common to see that in the case of COVID-19, the operation and distribution management of some communities are based on the traditional manual operation management, when the epidemic is serious, abnormal situations such as insufficient manpower and missing goods often occur, and lack of intelligent and dynamic effective management.
 
 
+# This is sqlDesign by powerDesign
 
-This is sqlDesign by powerDesign
-
-![sqlDesign](D:\桌面\graduationProject\graProject\imges\sqlDesign.png)
-
+![sqlDesign](https://github.com/Tiemoremilk/graProject/blob/main/imges/sqlDesign.png)
