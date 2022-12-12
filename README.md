@@ -15,3 +15,24 @@ dev_backCode 后端 springboot
 
 ![sqlDesign](https://github.com/Tiemoremilk/graProject/blob/main/imges/sqlDesign.png)
 
+
+# git样例
+```
+git init
+
+git branch -a
+
+git add .
+
+git remote add origin git@github.com:Tiemoremilk/graProject.git
+
+git commit -m 'first commit'
+
+git branch dev_backCode/(git branch -M dev_backCode)
+
+git checkout dev_backCode
+
+git pull --rebase origin dev_backCode
+
+ git push -u origin dev_backCode
+```
