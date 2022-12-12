@@ -16,7 +16,7 @@ dev_backCode 后端 springboot
 ![sqlDesign](https://github.com/Tiemoremilk/graProject/blob/main/imges/sqlDesign.png)
 
 
-# git样例
+# git creat
 ```
 git init
 
