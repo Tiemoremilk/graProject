@@ -1,3 +1,3 @@
 ## API手册
-springboot[springboot]: https://spring.io/projects/spring-boot/
-mybatisplus[mybatisplus]: https://baomidou.com/
+1.[springboot]: https://spring.io/projects/spring-boot/
+2.[mybatisplus]: https://baomidou.com/
