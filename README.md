@@ -1,3 +1,3 @@
-## APIÊÖ²á
-[springboot]: https://spring.io/projects/spring-boot/
-[mybatisplus]: https://baomidou.com/
+## APIæ‰‹å†Œ
+springboot[springboot]: https://spring.io/projects/spring-boot/
+mybatisplus[mybatisplus]: https://baomidou.com/
