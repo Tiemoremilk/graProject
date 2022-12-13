@@ -14,18 +14,20 @@
         <el-button @click="addBtn" :icon="Plus">新增</el-button>
       </el-form-item>
     </el-form>
+    <!-- 新增或者编辑的弹框属性 -->
+    <AddRoleVue ref="addRef"></AddRoleVue>
   </el-main>
 </template>
 
 <script setup lang="ts">
+import "@/assets/elementPlusBase.css";
 import { Search, Edit, Plus, Refresh, Delete } from "@element-plus/icons-vue";
 import useRole from "@/composables/role/useRole";
 import useTable from "@/composables/role/useTable";
+import AddRoleVue from "./AddRole.vue";
 
 const { listParm, searchBtn, resetBtn } = useTable();
-const { addBtn, deleteBtn, editBtn } = useRole();
+const { addBtn, deleteBtn, editBtn, addRef } = useRole();
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss" scope></style>

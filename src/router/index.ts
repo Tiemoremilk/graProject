@@ -37,7 +37,7 @@ const router = createRouter({
       children: [
         {
           path: "/userList",
-          component: () => import("@/views/pages/system/UserListManage.vue"),
+          component: () => import("@/views/pages/system/user/UserListManage.vue"),
           name: "userList",
           meta: {
             title: "用户管理",
@@ -47,7 +47,7 @@ const router = createRouter({
         },
         {
           path: "/roleList",
-          component: () => import("@/views/pages/system/RoleListManage.vue"),
+          component: () => import("@/views/pages/system/role/RoleListManage.vue"),
           name: "roleList",
           meta: {
             title: "角色管理",
@@ -57,7 +57,7 @@ const router = createRouter({
         },
         {
           path: "/menuList",
-          component: () => import("@/views/pages/system/MenuListManage.vue"),
+          component: () => import("@/views/pages/system/menu/MenuListManage.vue"),
           name: "menuList",
           meta: {
             title: "权限管理",

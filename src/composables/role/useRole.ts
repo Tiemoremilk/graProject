@@ -1,6 +1,11 @@
+import { ref } from "vue";
+
 export default function useRole() {
+  const addRef = ref<{ onShow: () => void }>();
   //新增
-  const addBtn = () => {};
+  const addBtn = () => {
+    addRef.value?.onShow();
+  };
   //编辑
   const editBtn = () => {};
   //删除
@@ -9,5 +14,6 @@ export default function useRole() {
     addBtn,
     editBtn,
     deleteBtn,
+    addRef,
   };
 }
