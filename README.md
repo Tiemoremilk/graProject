@@ -6,7 +6,7 @@
 # branch
 ```
 dev_webCode 前端 vite+pinna+ts+Echarts+element-Plus
-dev_backCode 后端 springboot
+dev_backCode 后端 springboot+mybatisPlus
 ```
 
 
