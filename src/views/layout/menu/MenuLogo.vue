@@ -8,7 +8,7 @@
 import MenuLogoMax from "@/assets/logoMax.png";
 import MenuLogoMin from "@/assets/logoMin.png";
 import { collapseStore } from "@/stores/collapse";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 const store = collapseStore();
 // eslint-disable-next-line vue/return-in-computed-property
 const stauts = computed(() => {
