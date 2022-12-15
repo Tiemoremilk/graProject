@@ -18,9 +18,15 @@ dev_backCode 后端 springboot+mybatisPlus
 
 # git creat
 ```
-git init
+echo "#XXXXXX" >> README.md 
 
-git branch -a
+git branch -rv 查看所有远程分支
+
+git checkout -b + 分支名   创建分支
+
+git push --set-upstream origin + 刚刚创建的分支名  远程分支创建成功
+
+git init
 
 git add .
 
@@ -30,9 +36,11 @@ git commit -m 'first commit'
 
 git branch dev_backCode/(git branch -M dev_backCode)
 
+git branch -a
+
 git checkout dev_backCode
 
 git pull --rebase origin dev_backCode
 
- git push -u origin dev_backCode
+git push -u origin dev_backCode
 ```
