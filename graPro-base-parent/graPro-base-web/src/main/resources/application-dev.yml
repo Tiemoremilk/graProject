@@ -1,7 +1,7 @@
-#¶Ë¿ÚºÅÅäÖÃ
+#ç«¯å£å·é…ç½®
 server:
   port: 8089
-#Êı¾İ¿âÁ¬½ÓÅäÖÃ
+#æ•°æ®åº“è¿æ¥é…ç½®
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -9,16 +9,14 @@ spring:
     url: jdbc:mysql://localhost:3306/grapro?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: root
-
-#mybatis plusÅäÖÃ
+#mybatis plusé…ç½®
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
-      #ÅäÖÃmybatis plus ÔÚ¸üĞÂÊ±Ö»¸üĞÂ·Ç¿ÕºÍ·ÇNULLµÄ×Ö¶Î
+      #é…ç½®mybatis plus åœ¨æ›´æ–°æ—¶åªæ›´æ–°éç©ºå’ŒéNULLçš„å­—æ®µ
       update-strategy: not_empty
-
 logging:
   pattern:
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger- %msg%n'
