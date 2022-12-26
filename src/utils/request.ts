@@ -1,63 +1,68 @@
-import axios from "axios";
 import type {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosResponse,
   AxiosRequestHeaders,
 } from "axios";
+import axios from "axios";
 import { ElMessage } from "element-plus";
 
-//axios配置
+//axios请求配置
 const config = {
-  //域名
-  baseURL: "http://localhost:5731",
-  //连接超时时间
+  baseURL: "http://localhost:8089",
   timeout: 10000,
 };
 //定义返回值类型
-//传递T 默认any
 export interface Result<T = any> {
   code: number;
   msg: string;
   data: T;
 }
-//定义类
+
 class ApiService {
+  //axios实例
   private instance: AxiosInstance;
-  //构造函数进行初始化
+  //构造函数里面初始化
   constructor(config: AxiosRequestConfig) {
-    //实例化
     this.instance = axios.create(config);
-    //配置拦截器
+    //定义拦截器
     this.interceptors();
   }
+  //拦截器
   private interceptors() {
+    //axios发送请求之前的处理
     this.instance.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        // Do something before request is sent
+        //在请求头部携带token
+        // let token = sessionStorage.getItem('token');
         const token = "";
         if (token) {
           config.headers!["token"] = token;
+          //把token放到headers里面
+          // (config.headers as AxiosRequestHeaders).token = token
         }
-        return Promise.reject(config);
+        console.log(config);
+        return config;
       },
       (error: any) => {
-        // Do something with request error
         error.data = {};
-        error.data.msg = "服务异常，请联系管理员";
-        return Promise.reject(error);
+        error.data.msg = "服务器异常，请联系管理员!";
+        return error;
       }
     );
+    //axios请求返回之后的处理
+    //请求返回之后的处理
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => {
+        // console.log(res.data)
         if (res.data.code != 200) {
           ElMessage.error(res.data.msg || "服务器出错!");
-          return Promise.reject(res.data.msg || "服务器出错!");
+          return Promise.reject(res.data.msg || "服务器出错");
         } else {
           return res.data;
         }
       },
-      (error: any) => {
+      (error) => {
         console.log("进入错误");
         error.data = {};
         if (error && error.response) {
@@ -122,18 +127,22 @@ class ApiService {
       }
     );
   }
-  //请求的封装 Promise<T>返回值类型
-  get<T = Result>(url: string, params?: object): Promise<T> {
+
+  /* GET 方法 */
+  get<T>(url: string, params?: object): Promise<T> {
     return this.instance.get(url, { params });
   }
-  post<T = Result>(url: string, data?: object): Promise<T> {
-    return this.instance.post(url, { data });
+  /* POST 方法 */
+  post<T>(url: string, data?: object): Promise<T> {
+    return this.instance.post(url, data);
   }
-  put<T = Result>(url: string, data?: object): Promise<T> {
-    return this.instance.put(url, { data });
+  /* PUT 方法 */
+  put<T>(url: string, data?: object): Promise<T> {
+    return this.instance.put(url, data);
   }
-  delete<T = Result>(url: string): Promise<T> {
+  /* DELETE 方法 */
+  delete<T>(url: string): Promise<T> {
     return this.instance.delete(url);
   }
 }
-export default ApiService;
+export default new ApiService(config);
