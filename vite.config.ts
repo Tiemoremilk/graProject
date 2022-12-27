@@ -12,6 +12,14 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 export default defineConfig({
   // eslint-disable-next-line no-sparse-arrays
   plugins: [
+    // {
+    //   libraryName: "element-plus",
+    //   esModule: true,
+    //   resolveStyle: (name: string) => {
+    //     return `element-plus/theme-chalk/${name}.css`;
+    //   },
+    // },
+
     // 按需引入
     AutoImport({
       resolvers: [ElementPlusResolver()],

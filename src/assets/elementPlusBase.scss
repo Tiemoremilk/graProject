@@ -1,0 +1,48 @@
+.el-button{
+  --el-button-hover-text-color: #87510f ;
+  --el-button-active-text-color: #e28007 ;
+  --el-button-active-border-color: #ec9a46 ;
+  --el-button-hover-bg-color: #f0e8e0 ;
+  --el-button-hover-border-color: #eed5bb ;
+}
+
+.el-input{
+  --el-input-focus-border-color:#ec9a46;
+}
+// 确认框颜色封装
+.el-popover.el-popper {
+  .el-button--danger {
+    color: #f56c6c;
+    border-color: #f56c6c;
+    background-color: #fef0f0;
+  }
+  .el-button--danger:focus,
+  .el-button--danger:hover {
+    color: #fff;
+    border-color: #f56c6c;
+    background-color: #f56c6c;
+  }
+}
+//messageBox
+.el-message-box__btns {
+  .el-button:focus,
+  .el-button:hover {
+    color: #a0867a;
+    border-color: #a0867a;
+    background-color: #f6f3f2;
+  }
+
+  .el-button--primary {
+    color: #f56c6c;
+    border-color: #f56c6c;
+    background-color: #fef0f0;
+  }
+  .el-button--primary:focus,
+  .el-button--primary:hover {
+    color: #fff;
+    border-color: #f56c6c;
+    background-color: #f56c6c;
+  }
+}
+
+

@@ -33,15 +33,32 @@
 <script setup lang="ts">
 import sysDialog from "@/utils/sysDialog";
 import SysDialogVue from "@/components/SysDialog.vue";
-import type { AddRoleModel } from "@/api/role/roleModel";
-import { reactive, ref } from "vue";
+import type { AddRoleModel } from "@/type/roleModel";
+import { nextTick, reactive, ref } from "vue";
 import { ElMessage, type FormInstance } from "element-plus";
-import { addApi } from "@/api/role";
+import { addApi, editApi } from "@/api/role";
+import { EditType, Title } from "@/type/enumType";
+import useInstance from "@/hooks/useInstance";
+import { add } from "lodash";
+
+const { global } = useInstance();
 const addFormRef = ref<FormInstance>();
 const { dialog, onClose, onConfirm, onShow } = sysDialog();
-defineExpose({
-  onShow,
-});
+const show = (type: string, row?: AddRoleModel) => {
+  type == EditType.ADD
+    ? (dialog.title = Title.ADD)
+    : (dialog.title = Title.EDIT);
+  if (type == EditType.EDIT) {
+    //设置回显数据
+    nextTick(() => {
+      global.$easyCopy(row, addModel);
+    });
+  }
+  onShow();
+  addModel.type = type;
+  addFormRef.value?.resetFields();
+};
+
 //表单绑定数据
 const addModel = reactive<AddRoleModel>({
   type: "",
@@ -59,20 +76,36 @@ const rules = reactive({
     },
   ],
 });
+//注册事件
+const emits = defineEmits(["refresh"]);
+
 //表单提交
 const onSubmit = () => {
   addFormRef.value?.validate(async (valid) => {
     if (valid) {
-      console.log(addModel);
-      let res = await addApi(addModel);
-      console.log(res);
-      if (res && res.code == 200) {
-        ElMessage.success(res.msg);
-        onClose();
+      let res = reactive<any>(null);
+      if (addModel.type == EditType.ADD) {
+        res = await addApi(addModel);
+      } else {
+        res = await editApi(addModel);
       }
+      if (res && res.code == 200) {
+        //子组件调用父组件的方法
+        emits("refresh");
+        ElMessage({
+          showClose: true,
+          message: res.msg,
+          type: "success",
+        });
+      }
+      onClose();
     }
   });
 };
+
+defineExpose({
+  show,
+});
 </script>
 
 <style scoped></style>

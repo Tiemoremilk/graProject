@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import type { DialogModel } from "./dialogType";
+import type { DialogModel } from "../type/baseType";
 export default function sysDialog() {
   //弹窗
   const dialog = reactive<DialogModel>({
