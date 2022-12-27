@@ -6,5 +6,5 @@ import com.graPro.web.sys_role.entity.RoleParm;
 import com.graPro.web.sys_role.entity.SysRole;
 
 public interface SysRoleService extends IService<SysRole> {
-    IPage<SysRole> searchRole(RoleParm parm);
+    IPage<SysRole> searchRole(RoleParm params);
 }

@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
 
     @Override
-    public IPage<SysRole> searchRole(RoleParm parm) {
+    public IPage<SysRole> searchRole(RoleParm params) {
         //分页
-        IPage<SysRole> page = new Page<> ( parm.getCurrentPage (),parm.getPageSize () );
+        IPage<SysRole> page = new Page<> ( params.getCurrentPage (),params.getPageSize () );
         //查询条件
         QueryWrapper<SysRole> query = new QueryWrapper<>();
-        if(StringUtils.isNotEmpty(parm.getRoleName ())){
-            query.lambda ().like (SysRole::getRoleName,parm.getRoleName ());
+        if(StringUtils.isNotEmpty(params.getRoleName ())){
+            query.lambda ().like (SysRole::getRoleName,params.getRoleName ());
 
         }
         return this.baseMapper.selectPage (page,query);

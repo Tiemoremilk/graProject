@@ -44,9 +44,9 @@ public class SysRoleController {
     }
     //分页查询
     @GetMapping("/list")
-    public ResultVo searchRole(RoleParm parm){
+    public ResultVo searchRole(RoleParm params){
 
-        IPage<SysRole> list = sysRoleService.searchRole (parm);
+        IPage<SysRole> list = sysRoleService.searchRole (params);
         return ResultUtils.success ("查询成功",list);
     }
 }
