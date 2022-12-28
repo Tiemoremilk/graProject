@@ -3,7 +3,7 @@ package com.graPro.web.sys_role.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.graPro.utils.ResultUtils;
 import com.graPro.utils.ResultVo;
-import com.graPro.web.sys_role.entity.RoleParm;
+import com.graPro.web.sys_role.entity.RoleParam;
 import com.graPro.web.sys_role.entity.SysRole;
 import com.graPro.web.sys_role.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class SysRoleController {
     }
     //分页查询
     @GetMapping("/list")
-    public ResultVo searchRole(RoleParm params){
+    public ResultVo searchRole(RoleParam params){
 
         IPage<SysRole> list = sysRoleService.searchRole (params);
         return ResultUtils.success ("查询成功",list);

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.graPro.web.sys_role.entity.RoleParm;
+import com.graPro.web.sys_role.entity.RoleParam;
 import com.graPro.web.sys_role.entity.SysRole;
 import com.graPro.web.sys_role.mapper.SysRoleMapper;
 import com.graPro.web.sys_role.service.SysRoleService;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements SysRoleService {
 
     @Override
-    public IPage<SysRole> searchRole(RoleParm params) {
+    public IPage<SysRole> searchRole(RoleParam params) {
         //分页
         IPage<SysRole> page = new Page<> ( params.getCurrentPage (),params.getPageSize () );
         //查询条件
