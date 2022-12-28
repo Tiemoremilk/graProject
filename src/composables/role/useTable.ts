@@ -1,7 +1,7 @@
 import type { ListParm } from "@/type/roleModel";
 import { reactive } from "vue";
 import { getListApi } from "@/api/role";
-import { onMounted, ref, nextTick, watchEffect, computed } from "vue";
+import { onMounted, computed } from "vue";
 export default function useTable() {
   //列表高度
   // const tableHeight = ref(0);
@@ -46,11 +46,7 @@ export default function useTable() {
   onMounted(() => {
     getList();
   });
-  // watchEffect(() => {
-  //   nextTick(() => {
-  //     tableHeight.value = window.innerHeight - 230;
-  //   });
-  // });
+
   const tableHeight = computed(() => {
     return window.innerHeight - 230;
   });

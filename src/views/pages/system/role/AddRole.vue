@@ -18,11 +18,18 @@
         <el-row>
           <el-col :span="12" :offset="0">
             <el-form-item prop="roleName" label="角色名称">
-              <el-input v-model="addModel.roleName"></el-input> </el-form-item
+              <el-input
+                v-model="addModel.roleName"
+                hide-required-asterisk
+              ></el-input> </el-form-item
           ></el-col>
-          <el-col :span="12" :offset="0">
+          <el-col :span="22" :offset="0">
             <el-form-item prop="remark" label="备注">
-              <el-input v-model="addModel.remark"></el-input> </el-form-item
+              <el-input
+                v-model="addModel.remark"
+                type="textarea"
+                :autosize="{ minRows: 3, maxRows: 6 }"
+              ></el-input> </el-form-item
           ></el-col>
         </el-row>
       </el-form>
@@ -39,7 +46,6 @@ import { ElMessage, type FormInstance } from "element-plus";
 import { addApi, editApi } from "@/api/role";
 import { EditType, Title } from "@/type/enumType";
 import useInstance from "@/hooks/useInstance";
-import { add } from "lodash";
 
 const { global } = useInstance();
 const addFormRef = ref<FormInstance>();

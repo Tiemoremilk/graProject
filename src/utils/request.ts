@@ -41,7 +41,7 @@ class ApiService {
           //把token放到headers里面
           // (config.headers as AxiosRequestHeaders).token = token
         }
-        console.log(config);
+        // console.log(config);
         return config;
       },
       (error: any) => {
@@ -63,7 +63,7 @@ class ApiService {
         }
       },
       (error) => {
-        console.log("进入错误");
+        // console.log("进入错误");
         error.data = {};
         if (error && error.response) {
           switch (error.response.status) {

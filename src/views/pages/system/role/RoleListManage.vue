@@ -2,7 +2,7 @@
 <template>
   <el-main>
     <!-- 搜索栏 -->
-    <el-form :model="listParm" :inline="true" size="normal" ref="referenceRef">
+    <el-form :model="listParm" :inline="true" size="default" ref="referenceRef">
       <el-form-item prop="roleName" label="">
         <el-input
           v-model="listParm.roleName"
@@ -19,10 +19,32 @@
     </el-form>
     <!-- 列表 -->
     <el-table :height="tableHeight" :data="tableList.dataList" border stripe>
-      <el-table-column prop="roleName" label="角色名称"></el-table-column>
+      <el-table-column
+        prop="roleName"
+        label="角色名称"
+        width="180"
+      ></el-table-column>
       <el-table-column prop="remark" label="备注"></el-table-column>
-      <el-table-column prop="createTime" label="创建时间"></el-table-column>
-      <el-table-column prop="updateTime" label="更新时间"></el-table-column>
+      <el-table-column prop="createTime" width="180" label="创建时间">
+        <template #default="scope">
+          <div style="display: flex; align-items: center">
+            <el-icon v-if="scope.row.createTime ? true : false"
+              ><timer
+            /></el-icon>
+            <span style="margin-left: 10px">{{ scope.row.createTime }}</span>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="updateTime" width="180" label="更新时间">
+        <template #default="scope">
+          <div style="display: flex; align-items: center">
+            <el-icon v-if="scope.row.updateTime ? true : false"
+              ><timer
+            /></el-icon>
+            <span style="margin-left: 10px">{{ scope.row.updateTime }}</span>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" width="200" align="center">
         <template #default="scope">
           <el-button
@@ -85,7 +107,7 @@ import {
   Plus,
   Refresh,
   Delete,
-  InfoFilled,
+  Timer,
 } from "@element-plus/icons-vue";
 import useRole from "@/composables/role/useRole";
 import useTable from "@/composables/role/useTable";
@@ -103,7 +125,6 @@ const {
   refresh,
 } = useTable();
 const { addBtn, deleteBtn, editBtn, addRef } = useRole(refresh);
-
 // 重置
 // let referenceRef = ref(null);
 //const reset = () => {
@@ -116,12 +137,4 @@ const reset = () => {
 };
 </script>
 
-<style lang="scss" scope>
-.el-pager li:not(.is-disabled) {
-  background-color: #b49586 !important;
-}
-.el-pagination {
-  float: right;
-  margin-top: 5px;
-}
-</style>
+<style lang="scss" scope></style>

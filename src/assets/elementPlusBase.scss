@@ -7,7 +7,7 @@
 }
 
 .el-input{
-  --el-input-focus-border-color:#ec9a46;
+  --el-input-focus-border-color:#ec9a46 !important;
 }
 // 确认框颜色封装
 .el-popover.el-popper {
@@ -27,8 +27,8 @@
 .el-message-box__btns {
   .el-button:focus,
   .el-button:hover {
-    color: #a0867a;
-    border-color: #a0867a;
+    color: #a38f86;
+    border-color: #d4bcb1;
     background-color: #f6f3f2;
   }
 
@@ -43,6 +43,36 @@
     border-color: #f56c6c;
     background-color: #f56c6c;
   }
+}
+//分页器
+.el-pagination {
+  float: right;
+  margin-top: 5px;
+  .el-pager li:hover {
+    color: #fff;
+    background-color: #8f786c !important;
+  }
+  // .el-pager li:not(.is-disabled) {
+  //   background-color: #bb9d8e !important;   
+  // }
+  .is-active{
+      color: #fff;
+      background-color: #bb9d8e !important;
+  }
+  .el-select .el-input.is-focus .el-input__wrapper {
+      box-shadow: 0 0 0 1px #db9926 inset!important;   
+  }
+  .el-select .el-input__wrapper.is-focus{
+    box-shadow: 0 0 0 1px #db9926 inset!important;
+  }
+}
+.el-select-dropdown__item.selected {
+  color: #db9926;
+}
+
+//textarea
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 1px #db9926 inset!important;
 }
 
 
