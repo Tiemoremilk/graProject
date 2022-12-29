@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
     @Autowired
@@ -43,10 +44,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
     @Transactional
     @Override
-    public void deleteUser(SysUser sysUser) {
-            if(this.baseMapper.deleteById (sysUser.getUserId ()) > 0){
+    public void deleteUser(Long userId) {
+            if(this.baseMapper.deleteById (userId) > 0){
                 QueryWrapper<SysUserRole> query = new QueryWrapper<>();
-                query.lambda ().eq (SysUserRole::getUserId,sysUser.getUserId ());
+                query.lambda ().eq (SysUserRole::getUserId,userId);
                 sysUserRoleService.remove(query);
             }
     }
