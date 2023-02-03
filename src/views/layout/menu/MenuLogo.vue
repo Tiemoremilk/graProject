@@ -21,6 +21,7 @@ const MenuLogo = computed(() => {
     return "MenuLogoMin";
   }
 });
+
 const MenuLogoImges = computed(() => {
   if (stauts.value) {
     return MenuLogoMax;

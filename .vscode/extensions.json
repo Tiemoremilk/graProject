@@ -2,6 +2,8 @@
   "recommendations": [
     "vue.volar",
     "vue.vscode-typescript-vue-plugin",
-    "saekiraku.rainbow-fart"
+    "saekiraku.rainbow-fart",
+    "ms-ceintl.vscode-language-pack-zh-hans",
+    "github.copilot"
   ]
 }

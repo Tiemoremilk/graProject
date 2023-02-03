@@ -104,7 +104,7 @@ const onSubmit = () => {
           type: "success",
         });
       }
-      onClose();
+      onConfirm();
     }
   });
 };
