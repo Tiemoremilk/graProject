@@ -1,8 +1,8 @@
-import type { ListParm } from "@/type/userModel";
+import type { ListParam } from "@/type/userModel";
 import { computed, onMounted, reactive } from "vue";
 
 export default function useTable() {
-  const listParm = reactive<ListParm>({
+  const listParam = reactive<ListParam>({
     currentPage: 1,
     pageSize: 10,
     total: 0,
@@ -17,17 +17,17 @@ export default function useTable() {
   };
   //重置
   const resetBtn = () => {
-    // listParm.roleName = "";
+    // listParam.roleName = "";
     getList();
   };
   //页容量改变
   const sizeChange = (val: number) => {
-    listParm.pageSize = val;
+    listParam.pageSize = val;
     getList();
   };
   //页数改变
   const currentChange = (val: number) => {
-    listParm.currentPage = val;
+    listParam.currentPage = val;
     getList();
   };
   onMounted(() => {
@@ -40,5 +40,5 @@ export default function useTable() {
   const refresh = () => {
     getList();
   };
-  return { listParm, searchBtn, resetBtn };
+  return { listParam, searchBtn, resetBtn };
 }

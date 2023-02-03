@@ -2,10 +2,15 @@
 <template>
   <el-main>
     <!-- 搜索栏 -->
-    <el-form :model="listParm" :inline="true" size="default" ref="referenceRef">
+    <el-form
+      :model="listParam"
+      :inline="true"
+      size="default"
+      ref="referenceRef"
+    >
       <el-form-item prop="roleName" label="">
         <el-input
-          v-model="listParm.roleName"
+          v-model="listParam.roleName"
           placeholder="请输入角色名称"
         ></el-input>
       </el-form-item>
@@ -84,11 +89,11 @@
     <el-pagination
       @size-change="sizeChange"
       @current-change="currentChange"
-      v-model:current-page="listParm.currentPage"
+      v-model:current-page="listParam.currentPage"
       :page-sizes="[10, 20, 30, 40]"
-      :page-size="listParm.pageSize"
+      :page-size="listParam.pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="listParm.total"
+      :total="listParam.total"
       background
     >
       :pager-count="7">
@@ -115,7 +120,7 @@ import AddRoleVue from "./AddRole.vue";
 import { ref } from "vue";
 
 const {
-  listParm,
+  listParam,
   searchBtn,
   resetBtn,
   tableList,

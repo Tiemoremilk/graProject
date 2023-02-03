@@ -10,7 +10,7 @@ export type SelectTypeList = {
 };
 
 //查询列表的数据类型
-export type ListParm = {
+export type ListParam = {
   currentPage: number;
   pageSize: number;
   nickName: string;

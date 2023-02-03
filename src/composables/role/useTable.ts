@@ -1,4 +1,4 @@
-import type { ListParm } from "@/type/roleModel";
+import type { ListParam } from "@/type/roleModel";
 import { reactive } from "vue";
 import { getListApi } from "@/api/role";
 import { onMounted, computed } from "vue";
@@ -6,7 +6,7 @@ export default function useTable() {
   //列表高度
   // const tableHeight = ref(0);
   //列表参数
-  const listParm = reactive<ListParm>({
+  const listParam = reactive<ListParam>({
     currentPage: 1,
     pageSize: 10,
     roleName: "",
@@ -18,10 +18,10 @@ export default function useTable() {
   });
   //列表
   const getList = async () => {
-    const res: any = await getListApi(listParm);
+    const res: any = await getListApi(listParam);
     if (res && res.code == 200) {
       tableList.dataList = res.data.records;
-      listParm.total = res.data.total;
+      listParam.total = res.data.total;
     }
   };
   //搜索
@@ -30,17 +30,17 @@ export default function useTable() {
   };
   //重置
   const resetBtn = () => {
-    // listParm.roleName = "";
+    // listParam.roleName = "";
     getList();
   };
   //页容量改变
   const sizeChange = (val: number) => {
-    listParm.pageSize = val;
+    listParam.pageSize = val;
     getList();
   };
   //页数改变
   const currentChange = (val: number) => {
-    listParm.currentPage = val;
+    listParam.currentPage = val;
     getList();
   };
   onMounted(() => {
@@ -55,7 +55,7 @@ export default function useTable() {
   };
 
   return {
-    listParm,
+    listParam,
     getList,
     searchBtn,
     resetBtn,

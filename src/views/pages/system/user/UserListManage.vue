@@ -1,16 +1,16 @@
 <template>
   <el-main height="">
     <!-- 搜索 -->
-    <el-form :model="listParm" :inline="true" size="default">
+    <el-form :model="listParam" :inline="true" size="default">
       <el-form-item>
         <el-input
-          v-model="listParm.nickName"
+          v-model="listParam.nickName"
           placeholder="请输入昵称"
         ></el-input>
       </el-form-item>
       <el-form-item>
         <el-input
-          v-model="listParm.phone"
+          v-model="listParam.phone"
           placeholder="请输入手机号"
         ></el-input>
       </el-form-item>
@@ -41,7 +41,7 @@ import useTable from "@/composables/user/useTable";
 import user from "@/composables/user/user";
 import AddUser from "./AddUser.vue";
 import { ref } from "vue";
-const { listParm, searchBtn, resetBtn } = useTable();
+const { listParam, searchBtn, resetBtn } = useTable();
 const { editBtn, addBtn, addRef, deleteBtn } = user();
 const referenceRef = ref<null | { resetFields: () => null }>(null);
 const reset = () => {

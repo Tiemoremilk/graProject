@@ -5,7 +5,7 @@ export type AddRoleModel = {
   remark: string;
 };
 //查询参数类型
-export type ListParm = {
+export type ListParam = {
   currentPage: number;
   pageSize: number;
   roleName: string;

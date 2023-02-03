@@ -93,8 +93,8 @@ import type { AddUserModel } from "@/type/userModel";
 import userSelectRole from "@/composables/user/userSelectRole";
 import { EditType, Title } from "@/type/enumType";
 import { reactive, ref } from "vue";
-import type { FormInstance } from "element-plus";
-import "@/api/user/index";
+import { ElMessage, type FormInstance } from "element-plus";
+import { addApi } from "@/api/user/index";
 const { roleData, listRole } = userSelectRole();
 const addFormRef = ref<FormInstance>();
 const { dialog, onClose, onConfirm, onShow } = sysDialog();
@@ -179,9 +179,24 @@ const rules = reactive({
 });
 /**表单提交 */
 const commit = () => {
-  addFormRef.value?.validate((valid) => {
+  addFormRef.value?.validate(async (valid) => {
     if (valid) {
-      onClose();
+      let res = reactive<any>(null);
+      // if (addModel.type == EditType.ADD) {
+      res = await addApi(addModel);
+      // } else {
+      //   res = await editApi(addModel);
+      // }
+      if (res && res.code == 200) {
+        //子组件调用父组件的方法
+        // emits("refresh");
+        ElMessage({
+          showClose: true,
+          message: res.msg,
+          type: "success",
+        });
+      }
+      onConfirm();
     }
   });
 };
