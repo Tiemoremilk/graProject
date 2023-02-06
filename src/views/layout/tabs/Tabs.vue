@@ -1,20 +1,22 @@
 <template>
-  <el-tabs
-    v-model="activeTab"
-    type="card"
-    class="demo-tabs"
-    @tab-remove="removeTab"
-    @tab-click="clickBtn"
-  >
-    <el-tab-pane
-      v-for="item in tabList"
-      :key="item.path"
-      :label="item.title"
-      :name="item.path"
-      :closable="item.closable"
+  <div class="tabs">
+    <el-tabs
+      v-model="activeTab"
+      type="card"
+      class="demo-tabs"
+      @tab-remove="removeTab"
+      @tab-click="clickBtn"
     >
-    </el-tab-pane>
-  </el-tabs>
+      <el-tab-pane
+        v-for="item in tabList"
+        :key="item.path"
+        :label="item.title"
+        :name="item.path"
+        :closable="item.closable"
+      >
+      </el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -97,25 +99,27 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-.demo-tabs > .el-tabs__content {
-  padding: 32px;
-  color: #6b778c;
-  font-size: 32px;
-  font-weight: 600;
-}
-:deep(.el-tabs__item) {
-  background: linear-gradient(to bottom, #74655d, #653c30, #b69788);
-  border-bottom-color: #dfd8d2 !important;
-  color: #fff;
-}
-:deep(.is-active) {
-  color: #e27b5b !important;
-  border-bottom-color: #e27b5b !important;
-}
-:deep(.el-tabs__item:hover) {
-  color: #e27b5b !important;
-}
-:deep(.el-tabs) {
-  height: 35px !important;
+.tabs {
+  .demo-tabs > .el-tabs__content {
+    padding: 32px;
+    color: #6b778c;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  :deep(.el-tabs__item) {
+    background: linear-gradient(to bottom, #74655d, #653c30, #b69788);
+    border-bottom-color: #dfd8d2 !important;
+    color: #fff;
+  }
+  :deep(.is-active) {
+    color: #e27b5b !important;
+    border-bottom-color: #e27b5b !important;
+  }
+  :deep(.el-tabs__item:hover) {
+    color: #e27b5b !important;
+  }
+  :deep(.el-tabs) {
+    height: 35px !important;
+  }
 }
 </style>

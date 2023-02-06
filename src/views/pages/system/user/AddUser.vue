@@ -61,8 +61,8 @@
             </el-form-item>
           </el-col>
           <el-col :span="12" :offset="0">
-            <el-form-item prop="isEnable" label="状态">
-              <el-radio-group v-model="addModel.isEnabled">
+            <el-form-item prop="enabled" label="状态">
+              <el-radio-group v-model="addModel.enabled">
                 <el-radio :label="true">启用</el-radio>
                 <el-radio :label="false">停用</el-radio>
               </el-radio-group>
@@ -92,21 +92,38 @@ import SysDialogVue from "@/components/SysDialog.vue";
 import type { AddUserModel } from "@/type/userModel";
 import userSelectRole from "@/composables/user/userSelectRole";
 import { EditType, Title } from "@/type/enumType";
-import { reactive, ref } from "vue";
+import { nextTick, reactive, ref } from "vue";
 import { ElMessage, type FormInstance } from "element-plus";
-import { addApi } from "@/api/user/index";
-const { roleData, listRole } = userSelectRole();
+import { addApi, editApi } from "@/api/user/index";
+import useInstance from "@/hooks/useInstance";
+const { global } = useInstance();
+const { roleData, listRole, getRoleByUserId, roleId } = userSelectRole();
 const addFormRef = ref<FormInstance>();
 const { dialog, onClose, onConfirm, onShow } = sysDialog();
-// const show = (type: string, row?: AddUserModel) => {
-//   type == EditType.ADD
-//     ? (dialog.title = Title.ADD)
-//     : (dialog.title = Title.EDIT);
-//   onShow();
-// };
-const show = async () => {
-  dialog.height = 200;
+const show = async (type: string, row?: AddUserModel) => {
+  type == EditType.ADD
+    ? (dialog.title = Title.ADD)
+    : (dialog.title = Title.EDIT);
   await listRole();
+  dialog.height = 200;
+  if (type == EditType.EDIT) {
+    //设置回显数据
+    // nextTick(() => {
+    // global.$easyCopy(row, addModel);
+    // });
+  }
+  if (row) {
+    //查询用户角色
+    await getRoleByUserId(row.userId);
+    //回显
+    nextTick(() => {
+      Object.assign(addModel, row);
+      addModel.roleId = roleId.value;
+      // console.log("addModel", addModel);
+    });
+  }
+  addModel.type = type;
+  addFormRef.value?.resetFields();
   onShow();
 };
 
@@ -123,8 +140,8 @@ const addModel = reactive<AddUserModel>({
   phone: "",
   email: "",
   sex: "",
-  isEnabled: true,
   nickName: "",
+  enabled: true,
 });
 const rules = reactive({
   nickName: [
@@ -177,19 +194,22 @@ const rules = reactive({
     },
   ],
 });
+//注册事件
+const emits = defineEmits(["refresh"]);
 /**表单提交 */
 const commit = () => {
   addFormRef.value?.validate(async (valid) => {
     if (valid) {
       let res = reactive<any>(null);
-      // if (addModel.type == EditType.ADD) {
-      res = await addApi(addModel);
-      // } else {
-      //   res = await editApi(addModel);
-      // }
+      if (addModel.type == EditType.ADD) {
+        res = await addApi(addModel);
+      } else {
+        res = await editApi(addModel);
+        // console.log(addModel);
+      }
       if (res && res.code == 200) {
         //子组件调用父组件的方法
-        // emits("refresh");
+        emits("refresh");
         ElMessage({
           showClose: true,
           message: res.msg,

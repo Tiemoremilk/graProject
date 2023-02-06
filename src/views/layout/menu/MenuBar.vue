@@ -1,15 +1,17 @@
 <template>
-  <MenuLogo></MenuLogo>
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-vertical-demo"
-    unique-opened
-    background-color="#3E3C3B"
-    router
-    :collapse="!stauts"
-  >
-    <MenuItem :menuList="menuList"></MenuItem>
-  </el-menu>
+  <div class="menu">
+    <MenuLogo></MenuLogo>
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-vertical-demo"
+      unique-opened
+      background-color="#3E3C3B"
+      router
+      :collapse="!stauts"
+    >
+      <MenuItem :menuList="menuList"></MenuItem>
+    </el-menu>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -118,6 +120,7 @@ let menuList = reactive([
 ]);
 </script>
 <style scoped lang="scss">
+// .menu {
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 230px;
   min-height: 400px;
@@ -148,4 +151,5 @@ let menuList = reactive([
 :deep(.el-menu-item:hover) {
   background-color: #5f392e !important;
 }
+// }
 </style>

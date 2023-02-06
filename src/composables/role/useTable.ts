@@ -1,6 +1,6 @@
 import type { ListParam } from "@/type/roleModel";
 import { reactive } from "vue";
-import { getListApi } from "@/api/role";
+import { getListApi } from "@/api/role/index";
 import { onMounted, computed } from "vue";
 export default function useTable() {
   //列表高度

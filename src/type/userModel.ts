@@ -28,10 +28,16 @@ export type AddUserModel = {
   phone: string;
   email: string;
   sex: string;
-  isEnabled: boolean;
+  enabled: boolean;
   nickName: string;
   // createTime: Date;
   // updateTime: Date;
 };
 
-//
+//重置用户密码
+export type resetUserPassword = {
+  roleId: string;
+  userId: string;
+  password: string;
+  enabled: boolean;
+};
