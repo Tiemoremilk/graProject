@@ -8,6 +8,8 @@ import com.graPro.utils.ResultVo;
 import com.graPro.web.sys_user.entity.SysUser;
 import com.graPro.web.sys_user.entity.UserParam;
 import com.graPro.web.sys_user.service.SysUserService;
+import com.graPro.web.sys_user_role.entity.SysUserRole;
+import com.graPro.web.sys_user_role.service.SysUserRoleService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.Date;
 public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
     //新增用户
     @PostMapping
     public ResultVo addUser(@RequestBody SysUser sysUser){
@@ -38,6 +42,7 @@ public class SysUserController {
     @DeleteMapping("/{userId}")
     public ResultVo deleteUser(@PathVariable("userId") Long userId){
         sysUserService.deleteUser (userId);
+        sysUserRoleService.removeById (userId);
         return ResultUtils.success ("删除用户成功");
     }
 
@@ -55,6 +60,17 @@ public class SysUserController {
         query.lambda ().orderByDesc(SysUser::getCreateTime);
         IPage<SysUser> list =  sysUserService.page(page,query);
         return ResultUtils.success ("查询成功" , list );
+
+    }
+
+    //根roleId进行查询
+    @GetMapping("/getRoleByUserId")
+    public  ResultVo getRoleByUserId(long userId){
+    //查询条件
+        QueryWrapper<SysUserRole> query = new QueryWrapper<>();
+        query.lambda().eq(SysUserRole::getUserId,userId);
+        SysUserRole one = sysUserRoleService.getOne(query);
+        return ResultUtils.success ("查询成功" , one );
 
     }
 }

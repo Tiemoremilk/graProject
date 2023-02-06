@@ -28,9 +28,10 @@ public class SysUser {
     private boolean isAccountNonLocked = true;
     //密码是否过期(1 未过期，0已过期)
     private boolean isCredentialsNonExpired = true;
-    //帐户是否可用(1 可用，0 删除用户)
-    private boolean isEnabled = true;
+    //帐户是否可用(1 可用，0 停用)
+//    private boolean isEnabled = true ;
     private String nickName;
+    private boolean isEnabled;
     //创建时间
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
