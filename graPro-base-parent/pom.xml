@@ -63,8 +63,6 @@
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
             </dependency>
-
-
             <!-- JSON转换工具类依赖 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -92,6 +90,7 @@
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger2.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
