@@ -7,7 +7,7 @@ import { ElMessage } from "element-plus";
 import { ref } from "vue";
 // import useInstance from "@/hooks/useInstance";
 // const { global } = useInstance();
-export default function Useser(refresh: FuncList) {
+export default function useUser(refresh: FuncList) {
   const { global } = useInstance();
   // type 0新增 1编辑
   /**addDailg的ref属性 */

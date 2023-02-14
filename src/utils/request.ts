@@ -9,7 +9,8 @@ import { ElMessage } from "element-plus";
 
 //axios请求配置
 const config = {
-  baseURL: "http://localhost:8089",
+  // baseURL: "http://localhost:8085",
+  baseURL: "http://47.113.216.131:8085/",
   timeout: 10000,
 };
 //定义返回值类型

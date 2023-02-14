@@ -45,12 +45,12 @@
       <el-table-column
         prop="phone"
         label="电话"
-        show-overflow-tooltip="true"
+        show-overflow-tooltip
       ></el-table-column>
       <el-table-column
         prop="email"
         label="邮箱"
-        show-overflow-tooltip="true"
+        show-overflow-tooltip
       ></el-table-column>
       <el-table-column prop="roleName" label="角色">
         <!-- <template #default="scope"></template> -->
@@ -76,7 +76,7 @@
       <el-table-column
         prop="username"
         label="账号"
-        show-overflow-tooltip="true"
+        show-overflow-tooltip
       ></el-table-column>
       <el-table-column prop="createTime" width="130" label="创建时间">
         <template #default="scope">

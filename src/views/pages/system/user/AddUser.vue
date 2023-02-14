@@ -36,8 +36,8 @@
               <el-input v-model="addModel.phone"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="12" prop="email" :offset="0">
-            <el-form-item label="邮箱">
+          <el-col :span="12" :offset="0">
+            <el-form-item prop="email" label="邮箱">
               <el-input v-model="addModel.email"></el-input>
             </el-form-item>
           </el-col>
@@ -101,30 +101,26 @@ const { roleData, listRole, getRoleByUserId, roleId } = userSelectRole();
 const addFormRef = ref<FormInstance>();
 const { dialog, onClose, onConfirm, onShow } = sysDialog();
 const show = async (type: string, row?: AddUserModel) => {
+  //获取角色数据
+  await listRole();
+  //弹框属性设置
+  dialog.height = 220;
   type == EditType.ADD
     ? (dialog.title = Title.ADD)
     : (dialog.title = Title.EDIT);
-  await listRole();
-  dialog.height = 200;
-  if (type == EditType.EDIT) {
-    //设置回显数据
-    // nextTick(() => {
-    // global.$easyCopy(row, addModel);
-    // });
-  }
+  onShow();
+  //设置编辑的属性到表单绑定的数据对象
   if (row) {
-    //查询用户角色
+    //查询用户的角色
     await getRoleByUserId(row.userId);
-    //回显
     nextTick(() => {
+      //备拷
       Object.assign(addModel, row);
       addModel.roleId = roleId.value;
-      // console.log("addModel", addModel);
     });
   }
-  addModel.type = type;
   addFormRef.value?.resetFields();
-  onShow();
+  addModel.type = type;
 };
 
 defineExpose({

@@ -120,36 +120,36 @@ let menuList = reactive([
 ]);
 </script>
 <style scoped lang="scss">
-// .menu {
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 230px;
-  min-height: 400px;
-}
-.el-menu {
-  border-right: none;
-}
+.menu {
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 230px;
+    min-height: 400px;
+  }
+  .el-menu {
+    border-right: none;
+  }
 
-:deep(.el-sub-menu .el-sub-menu__title) {
-  color: #f4f4f5 !important;
-}
+  :deep(.el-sub-menu .el-sub-menu__title) {
+    color: #f4f4f5 !important;
+  }
 
-:deep(.el-menu .el-menu-item) {
-  color: #bfcbd9;
-}
-/* 菜单点中文字的颜色 */
+  :deep(.el-menu .el-menu-item) {
+    color: #bfcbd9;
+  }
+  /* 菜单点中文字的颜色 */
 
-:deep(.el-menu-item.is-active) {
-  color: #e27b5b !important;
-}
-/* 当前打开菜单的所有子菜单颜色 */
+  :deep(.el-menu-item.is-active) {
+    color: #e27b5b !important;
+  }
+  /* 当前打开菜单的所有子菜单颜色 */
 
-:deep(.is-opened .el-menu-item) {
-  background-color: #6f4034 !important;
-}
-/* 鼠标移动菜单的颜色 */
+  :deep(.is-opened .el-menu-item) {
+    background-color: #6f4034 !important;
+  }
+  /* 鼠标移动菜单的颜色 */
 
-:deep(.el-menu-item:hover) {
-  background-color: #5f392e !important;
+  :deep(.el-menu-item:hover) {
+    background-color: #5f392e !important;
+  }
 }
-// }
 </style>
