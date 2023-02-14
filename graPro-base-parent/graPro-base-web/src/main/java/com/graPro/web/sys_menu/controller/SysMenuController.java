@@ -48,8 +48,13 @@ public class SysMenuController {
     public ResultVo menuList(){
         List<SysMenu> list = sysMenuService.list ();
         List<SysMenu> menuList = menuTree.menuTree (list,0L);
-        return  ResultUtils.success("查询成功");
+        return  ResultUtils.success("查询成功",menuList);
     }
-
+    //上级
+    @GetMapping("/menuParent")
+    public ResultVo menuParent(){
+        List<SysMenu> list = sysMenuService.getParent ();
+        return  ResultUtils.success("查询成功",list);
+    }
 
 }

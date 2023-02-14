@@ -1,5 +1,6 @@
 package com.graPro.web.sys_role.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.graPro.utils.ResultUtils;
 import com.graPro.utils.ResultVo;
@@ -7,6 +8,9 @@ import com.graPro.web.sys_role.entity.RoleParam;
 import com.graPro.web.sys_role.entity.SelectType;
 import com.graPro.web.sys_role.entity.SysRole;
 import com.graPro.web.sys_role.service.SysRoleService;
+import com.graPro.web.sys_user.entity.SysUser;
+import com.graPro.web.sys_user_role.entity.SysUserRole;
+import com.graPro.web.sys_user_role.service.SysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +24,8 @@ import java.util.Optional;
 public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
     //新增
     @PostMapping
     public ResultVo addRole(@RequestBody SysRole sysRole){
@@ -44,6 +50,12 @@ public class SysRoleController {
     //删除
     @DeleteMapping("/{roleId}")
     public ResultVo deleteRole(@PathVariable("roleId") long roleId ){
+        QueryWrapper<SysUserRole> query = new QueryWrapper<> ();
+        query.lambda ().eq (SysUserRole::getRoleId,roleId);
+        SysUserRole one = sysUserRoleService.getOne(query);
+        if(one != null){
+            return ResultUtils.error ("该角色已被引用无法删除");
+        }
         if(sysRoleService.removeById (roleId)){
             return ResultUtils.success ("删除角色成功");
         }
