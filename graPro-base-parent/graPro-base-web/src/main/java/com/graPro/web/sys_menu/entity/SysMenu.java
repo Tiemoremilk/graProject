@@ -32,5 +32,7 @@ public class SysMenu {
     /*下级*/
     @TableField(exist = false)
     private List<SysMenu> children = new ArrayList<> ();
+    @TableField(exist = false)
+    private boolean open;
 
 }

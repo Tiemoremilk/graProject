@@ -1,10 +1,12 @@
 package com.graPro.web.sys_menu.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.graPro.utils.ResultUtils;
 import com.graPro.utils.ResultVo;
 import com.graPro.web.sys_menu.entity.SysMenu;
 import com.graPro.web.sys_menu.entity.menuTree;
 import com.graPro.web.sys_menu.service.SysMenuService;
+import com.graPro.web.sys_user.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +22,17 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
     @PostMapping
     public ResultVo addMenu(@RequestBody SysMenu sysMenu){
+        QueryWrapper<SysMenu> query = new QueryWrapper<> ();
+        query.lambda ().eq (SysMenu::getPath,sysMenu.getPath ());
+        SysMenu one = sysMenuService.getOne (query);
+        if(one != null){
+            return ResultUtils.error ("已存在该菜单目录，请检查输入");
+        }
         sysMenu.setCreateTime (new Date ());
         if(sysMenuService.save (sysMenu)){
-            return ResultUtils.success ("新增角色成功");
+            return ResultUtils.success ("新增菜单成功");
         }
-        return ResultUtils.error ("新增角色失败");
+        return ResultUtils.error ("新增菜单失败");
     }
     //编辑
     @PutMapping
