@@ -6,7 +6,6 @@ import com.graPro.utils.ResultVo;
 import com.graPro.web.sys_menu.entity.SysMenu;
 import com.graPro.web.sys_menu.entity.menuTree;
 import com.graPro.web.sys_menu.service.SysMenuService;
-import com.graPro.web.sys_user.entity.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -8,7 +8,6 @@ import com.graPro.web.sys_role.entity.RoleParam;
 import com.graPro.web.sys_role.entity.SelectType;
 import com.graPro.web.sys_role.entity.SysRole;
 import com.graPro.web.sys_role.service.SysRoleService;
-import com.graPro.web.sys_user.entity.SysUser;
 import com.graPro.web.sys_user_role.entity.SysUserRole;
 import com.graPro.web.sys_user_role.service.SysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
