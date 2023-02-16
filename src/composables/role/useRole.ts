@@ -27,7 +27,7 @@ export default function useRole(refresh: FuncList) {
         ElMessage({
           showClose: true,
           message: res.msg,
-          type: "warning",
+          type: "success",
         });
         refresh();
       }

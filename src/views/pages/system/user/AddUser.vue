@@ -6,6 +6,7 @@
     :visible="dialog.visible"
     @on-close="onClose"
     @on-confirm="commit"
+    @keyup.enter="commit"
   >
     <template #content>
       <el-form
