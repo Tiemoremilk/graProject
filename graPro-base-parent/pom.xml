@@ -91,6 +91,7 @@
                 <version>${swagger2.version}</version>
             </dependency>
 
+
         </dependencies>
     </dependencyManagement>
 

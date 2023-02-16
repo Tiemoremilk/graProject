@@ -1,6 +1,5 @@
 package com.graPro.web.material_category.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.Query;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,6 +12,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/materialCategory")
@@ -20,7 +21,7 @@ public class MaterialCategoryController {
     @Autowired
     private MaterialCategoryService materialCategoryService;
     @PostMapping
-    public ResultVo addMaterialCategory(@RequestBody MaterialCategory materialCategory){
+    public ResultVo addMaterialCategory(@Valid @RequestBody MaterialCategory materialCategory){
         if(materialCategoryService.save (materialCategory)){
             return ResultUtils.success ("新增物资类型成功");
         }
