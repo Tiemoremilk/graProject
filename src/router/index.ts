@@ -37,7 +37,8 @@ const router = createRouter({
       children: [
         {
           path: "/userList",
-          component: () => import("@/views/pages/system/user/UserListManage.vue"),
+          component: () =>
+            import("@/views/pages/system/user/UserListManage.vue"),
           name: "userList",
           meta: {
             title: "用户管理",
@@ -47,7 +48,8 @@ const router = createRouter({
         },
         {
           path: "/roleList",
-          component: () => import("@/views/pages/system/role/RoleListManage.vue"),
+          component: () =>
+            import("@/views/pages/system/role/RoleListManage.vue"),
           name: "roleList",
           meta: {
             title: "角色管理",
@@ -57,7 +59,8 @@ const router = createRouter({
         },
         {
           path: "/menuList",
-          component: () => import("@/views/pages/system/menu/MenuListManage.vue"),
+          component: () =>
+            import("@/views/pages/system/menu/MenuListManage.vue"),
           name: "menuList",
           meta: {
             title: "权限管理",
@@ -68,33 +71,39 @@ const router = createRouter({
       ],
     },
     {
-      path: "/goodsRoot",
+      path: "/materialManagement",
       component: Layout,
-      name: "goodsRoot",
+      name: "materialManagement",
       meta: {
         title: "物资管理",
         icon: "Setting",
-        roles: ["sys:goodsRoot"],
+        roles: ["sys:materialManagement"],
       },
       children: [
         {
-          path: "/goodsType",
-          component: () => import("@/views/pages/goodsRoot/GoodsType.vue"),
-          name: "goodsType",
+          path: "/materialCategory",
+          component: () =>
+            import(
+              "@/views/pages/materialManagement/materialCategory/MaterialCategoryManagement.vue"
+            ),
+          name: "materialCategory",
           meta: {
             title: "物资类型",
             icon: "UserFilled",
-            roles: ["sys:goodsType"],
+            roles: ["sys:materialCategory"],
           },
         },
         {
-          path: "/goodsList",
-          component: () => import("@/views/pages/goodsRoot/GoodsList.vue"),
-          name: "goodsList",
+          path: "/materialInfo",
+          component: () =>
+            import(
+              "@/views/pages/materialManagement/materialInfo/MaterialInfoManagement.vue"
+            ),
+          name: "materialInfo",
           meta: {
             title: "物资信息",
             icon: "Wallet",
-            roles: ["sys:goodsList"],
+            roles: ["sys:materialInfo"],
           },
         },
       ],

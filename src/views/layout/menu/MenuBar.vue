@@ -86,33 +86,34 @@ let menuList = reactive([
     ],
   },
   {
-    path: "/goodsRoot",
+    path: "/materialManagement",
     component: "Layout",
-    name: "goodsRoot",
+    name: "materialManagement",
     meta: {
       title: "物资管理",
       icon: "HelpFilled",
-      roles: ["sys:goodsRoot"],
+      roles: ["sys:materialManagement"],
     },
     children: [
       {
-        path: "/goodsType",
-        component: "/goods/GoodsType",
-        name: "goodsType",
+        path: "/materialCategory",
+        component:
+          "/materialManagement/materialCategory/MaterialCategoryManagement",
+        name: "materialCategory",
         meta: {
           title: "物资类型",
           icon: "Histogram",
-          roles: ["sys:goodsType"],
+          roles: ["sys:materialCategory"],
         },
       },
       {
-        path: "/goodsList",
-        component: "/goods/GoodsList",
-        name: "goodsList",
+        path: "/materialInfo",
+        component: "/materialManagement/materialInfo/MaterialInfoManagement",
+        name: "materialInfo",
         meta: {
           title: "物资信息",
           icon: "Wallet",
-          roles: ["sys:goodsList"],
+          roles: ["sys:materialInfo"],
         },
       },
     ],
