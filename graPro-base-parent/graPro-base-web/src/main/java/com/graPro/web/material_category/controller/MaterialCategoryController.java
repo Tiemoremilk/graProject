@@ -8,6 +8,7 @@ import com.graPro.utils.ResultVo;
 import com.graPro.web.material_category.entity.MaterialCategory;
 import com.graPro.web.material_category.entity.MaterialCategoryParam;
 import com.graPro.web.material_category.service.MaterialCategoryService;
+import com.graPro.web.sys_user.entity.SysUser;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,12 @@ public class MaterialCategoryController {
     private MaterialCategoryService materialCategoryService;
     @PostMapping
     public ResultVo addMaterialCategory(@Valid @RequestBody MaterialCategory materialCategory){
+        QueryWrapper<MaterialCategory> query = new QueryWrapper<>();
+        query.lambda ().eq (MaterialCategory::getCategoryName,materialCategory.getCategoryName());
+        MaterialCategory one = materialCategoryService.getOne (query);
+        if(one != null){
+            return ResultUtils.error ("已存在该类型");
+        }
         if(materialCategoryService.save (materialCategory)){
             return ResultUtils.success ("新增物资类型成功");
         }
@@ -30,6 +37,12 @@ public class MaterialCategoryController {
     //编辑
     @PutMapping
     public ResultVo editMaterialCategory(@RequestBody MaterialCategory materialCategory){
+        QueryWrapper<MaterialCategory> query = new QueryWrapper<>();
+        query.lambda ().eq (MaterialCategory::getCategoryName,materialCategory.getCategoryName());
+        MaterialCategory one = materialCategoryService.getOne (query);
+        if(one != null){
+            return ResultUtils.error ("已存在该类型");
+        }
         if(materialCategoryService.updateById(materialCategory)){
             return ResultUtils.success ("编辑物资类型成功");
         }
