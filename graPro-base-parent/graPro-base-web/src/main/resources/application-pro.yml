@@ -9,6 +9,10 @@ spring:
     url: jdbc:mysql://localhost:3306/grapro?serverTimezone=Asia/Beijing&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: root
+  servlet:
+    multipart:
+      max-file-size: 10MB     #单个文件最大限制
+      max-request-size: 50MB  #多个文件最大限制
 #mybatis plus配置
 mybatis-plus:
   configuration:
@@ -17,6 +21,12 @@ mybatis-plus:
     db-config:
       #配置mybatis plus 在更新时只更新非空和非NULL的字段
       update-strategy: not_empty
+
+#图片上传
+web:
+  uploadpath: /www/wwwroot/images  #图片上传的路径
+  load-path: file:/www/wwwroot/images #图片访问、加载的路径
+
 logging:
   pattern:
     console: '%d{yyyy-MM-dd} [%thread] %-5level %logger- %msg%n'

@@ -64,7 +64,7 @@ public class MaterialInfoController {
 
     }
     //物资分类查询
-    @GetMapping("/getSelect")
+    @GetMapping("/getListSelect")
     public ResultVo getSelect(){
         List<MaterialCategory> list = materialCategoryService.list();
         List<SelectType> materialCategoryList = new ArrayList<> ();
