@@ -37,12 +37,6 @@ public class MaterialCategoryController {
     //编辑
     @PutMapping
     public ResultVo editMaterialCategory(@RequestBody MaterialCategory materialCategory){
-        QueryWrapper<MaterialCategory> query = new QueryWrapper<>();
-        query.lambda ().eq (MaterialCategory::getCategoryName,materialCategory.getCategoryName());
-        MaterialCategory one = materialCategoryService.getOne (query);
-        if(one != null){
-            return ResultUtils.error ("已存在该类型");
-        }
         if(materialCategoryService.updateById(materialCategory)){
             return ResultUtils.success ("编辑物资类型成功");
         }
