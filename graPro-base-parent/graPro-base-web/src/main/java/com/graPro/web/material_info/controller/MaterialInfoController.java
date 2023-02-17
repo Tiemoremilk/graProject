@@ -6,20 +6,27 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.graPro.utils.ResultUtils;
 import com.graPro.utils.ResultVo;
 import com.graPro.web.material_category.entity.MaterialCategory;
+import com.graPro.web.material_category.service.MaterialCategoryService;
 import com.graPro.web.material_info.entity.MaterialInfo;
 import com.graPro.web.material_info.entity.MaterialInfoParam;
 import com.graPro.web.material_info.service.MaterialInfoService;
+import com.graPro.web.sys_role.entity.SelectType;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/materialInfo")
 public class MaterialInfoController {
     @Autowired
     private MaterialInfoService materialInfoService;
+    @Autowired
+    private MaterialCategoryService materialCategoryService;
 
     @PostMapping
     public ResultVo addMaterialInfo(@Valid @RequestBody MaterialInfo materialInfo){
@@ -55,5 +62,20 @@ public class MaterialInfoController {
         IPage<MaterialInfo> list = materialInfoService.page (page,query);
         return ResultUtils.success ("查询物资信息成功", list);
 
+    }
+    //物资分类查询
+    @GetMapping("/getSelect")
+    public ResultVo getSelect(){
+        List<MaterialCategory> list = materialCategoryService.list();
+        List<SelectType> materialCategoryList = new ArrayList<> ();
+        Optional.ofNullable(list).orElse(new ArrayList<>())
+                .stream()
+                .forEach(item -> {
+                    SelectType type = new SelectType();
+                    type.setValue(item.getCategoryId());
+                    type.setLabel(item.getCategoryName());
+                    materialCategoryList.add(type);
+                });
+        return ResultUtils.success("查询成功", materialCategoryList);
     }
 }
