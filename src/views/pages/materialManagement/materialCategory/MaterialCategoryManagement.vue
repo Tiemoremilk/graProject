@@ -72,14 +72,7 @@ import useTable from "@/composables/materialCategory/useTable";
 import useMaterialCategory from "@/composables/materialCategory/useMaterialCategory";
 import AddmaterialCategory from "./AddmaterialCategory.vue";
 import { ref } from "vue";
-import {
-  Search,
-  Edit,
-  Plus,
-  Refresh,
-  Delete,
-  Timer,
-} from "@element-plus/icons-vue";
+import { Search, Edit, Plus, Refresh, Delete } from "@element-plus/icons-vue";
 const {
   sizeChange,
   currentChange,

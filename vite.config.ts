@@ -49,4 +49,12 @@ export default defineConfig({
     /**代码热更新 */
     hmr: true,
   },
+  define: {
+    "process.env": {
+      /**dev */
+      BASE_API: "http://localhost:8085",
+      /**pro */
+      // BASE_API: "http://47.113.216.131:8085/",
+    },
+  },
 });

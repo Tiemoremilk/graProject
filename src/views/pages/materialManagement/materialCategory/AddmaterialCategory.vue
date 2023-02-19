@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import sysDialog from "@/utils/sysDialog";
 import SysDialogVue from "@/components/SysDialog.vue";
-import type { materialCategoryType } from "@/type/materialCategoryModel";
+import type { MaterialCategoryType } from "@/type/materialCategoryModel";
 import { EditType, Title } from "@/type/enumType";
 import { nextTick, reactive, ref } from "vue";
 import useInstance from "@/hooks/useInstance";
@@ -40,7 +40,7 @@ const { dialog, onClose, onConfirm, onShow } = sysDialog();
 
 const { global } = useInstance();
 const addFormRef = ref<FormInstance>();
-const show = (type: string, row?: materialCategoryType) => {
+const show = (type: string, row?: MaterialCategoryType) => {
   type == EditType.ADD
     ? (dialog.title = Title.ADD)
     : (dialog.title = Title.EDIT);
@@ -55,7 +55,7 @@ const show = (type: string, row?: materialCategoryType) => {
   addFormRef.value?.resetFields();
 };
 //表单绑定数据
-const addModel = reactive<materialCategoryType>({
+const addModel = reactive<MaterialCategoryType>({
   type: "",
   categoryId: "",
   categoryName: "",

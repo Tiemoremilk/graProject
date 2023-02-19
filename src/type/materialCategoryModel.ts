@@ -6,9 +6,10 @@ export type ListParam = {
   categoryName: string;
 };
 //分类数据类型
-export type materialCategoryType = {
+export type MaterialCategoryType = {
   type: string; //区分新增和编辑
   categoryId: string;
   categoryName: string;
   orderNum: string;
 };
+

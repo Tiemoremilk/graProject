@@ -9,8 +9,7 @@ import { ElMessage } from "element-plus";
 
 //axios请求配置
 const config = {
-  // baseURL: "http://localhost:8085",
-  baseURL: "http://47.113.216.131:8085/",
+  baseURL: process.env.BASE_API,
   timeout: 10000,
 };
 //定义返回值类型
@@ -144,6 +143,14 @@ class ApiService {
   /* DELETE 方法 */
   delete<T>(url: string): Promise<T> {
     return this.instance.delete(url);
+  }
+  //图片上传
+  upload<T = Result>(url: string, params?: object): Promise<T> {
+    return this.instance.post(url, params, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   }
 }
 export default new ApiService(config);

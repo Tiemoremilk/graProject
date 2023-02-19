@@ -1,6 +1,6 @@
 import type {
   ListParam,
-  materialCategoryType,
+  MaterialCategoryType,
 } from "@/type/materialCategoryModel";
 import ApiService from "@/utils/request";
 /**
@@ -16,7 +16,7 @@ export const getListApi = (params: ListParam) => {
  * @param data 
  * @returns 
  */
-export const addApi = (data: materialCategoryType) => {
+export const addApi = (data: MaterialCategoryType) => {
   return ApiService.post("/api/materialCategory", data);
 };
 /**
@@ -24,7 +24,7 @@ export const addApi = (data: materialCategoryType) => {
  * @param data 
  * @returns 
  */
-export const editApi = (data: materialCategoryType) => {
+export const editApi = (data: MaterialCategoryType) => {
   return ApiService.put("/api/materialCategory", data);
 };
 /**
