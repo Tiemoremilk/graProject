@@ -33,7 +33,7 @@ public class ImageUploadController {
         String path = webUploadpath;
         File fileDir = new File(path);
         if(!fileDir.exists()){
-            //设置权限
+            //设置权限（新的文件可写）
             fileDir.setWritable(true);
             fileDir.mkdirs();
         }

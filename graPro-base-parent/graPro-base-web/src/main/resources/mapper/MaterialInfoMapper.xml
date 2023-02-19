@@ -3,5 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.graPro.web.material_info.mapper.MaterialInfoMapper">
-
+    <select id="getList" resultType="com.graPro.web.material_info.entity.MaterialInfo">
+        select m.*, mc.category_name
+        from material_info as m
+        inner join material_category as mc on m.category_id = mc.category_id
+        <if test="param.infoName != '' and param.infoName != null ">
+            m.infoName like CONCAT('%',#{param.infoName},'%')
+        </if>
+    </select>
 </mapper>
