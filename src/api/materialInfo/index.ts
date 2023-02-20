@@ -45,6 +45,12 @@ export const getSelectApi = () => {
  * @param parm
  * @returns
  */
-export const uploadImageApi = (parm: object) => {
-  return ApiService.upload("/api/upload/uploadImage", parm);
+export const uploadImageApi = (param: object) => {
+  return ApiService.upload("/api/upload/uploadImage", param);
+};
+/**
+ * 图片删除
+ */
+export const deleteImageApi = (param: object) => {
+  return ApiService.deleteImage("/api/upload/deleteImage", param);
 };

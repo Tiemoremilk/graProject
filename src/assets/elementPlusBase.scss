@@ -75,4 +75,7 @@
   box-shadow: 0 0 0 1px #db9926 inset!important;
 }
 
-
+/*解决element上传组件回显动画问题*/
+.el-upload-list__item {
+  transition: none !important;
+  }

@@ -5,6 +5,9 @@ import { ref } from "vue";
 import { EditType } from "@/type/enumType";
 import { deleteApi } from "@/api/materialInfo";
 import { ElMessage } from "element-plus";
+import useUpload from "./useUpload";
+
+const { removeImg } = useUpload();
 
 export default function useMaterialInfo(refresh: FuncList) {
   const { global } = useInstance();
@@ -24,6 +27,7 @@ export default function useMaterialInfo(refresh: FuncList) {
   const deleteBtn = async (row: MaterialInfoType) => {
     const confirm = await global.$messageBox("确定删除该条数据么", "提示");
     if (confirm) {
+      await removeImg();
       const res: any = await deleteApi(row.infoId);
       if (res && res.code == 200) {
         ElMessage({

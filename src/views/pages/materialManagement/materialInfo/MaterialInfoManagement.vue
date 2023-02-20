@@ -26,7 +26,7 @@
       <el-table-column prop="image" width="90" label="物资图片" align="center">
         <template #default="scope">
           <el-image
-            style="width: 60px; height: 60px; border-radius: 50%"
+            style="width: 60px; height: 60px;"
             :src="scope.row.image"
           ></el-image>
         </template>
@@ -35,7 +35,7 @@
       <el-table-column prop="infoName" label="物资分类名称"> </el-table-column>
       <el-table-column prop="specs" label="规格"> </el-table-column>
       <el-table-column prop="unit" label="单位"> </el-table-column>
-      <el-table-column label="操作" align="center">
+      <el-table-column label="操作" align="center" width="200">
         <template #default="scope">
           <el-button
             :icon="Edit"

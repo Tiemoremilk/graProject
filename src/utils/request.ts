@@ -152,5 +152,18 @@ class ApiService {
       },
     });
   }
+  /**
+   * 图片删除
+   * @param url
+   * @param imageName
+   * @returns
+   */
+  deleteImage(path: string, params: any) {
+    return this.instance.post(path, params, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  }
 }
 export default new ApiService(config);

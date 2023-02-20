@@ -128,7 +128,7 @@ import type { MaterialInfoType } from "@/type/materialInfoModel";
 import { EditType, Title } from "@/type/enumType";
 import { addApi, editApi } from "@/api/materialInfo";
 import infoSelectCategory from "@/composables/materialInfo/infoSelectCategory";
-import useUpload from "@/composables/materialCategory/useUpload";
+import useUpload from "@/composables/materialInfo/useUpload";
 
 const { dialog, onClose, onConfirm, onShow } = sysDialog();
 const { global } = useInstance();
@@ -156,21 +156,40 @@ const addModel = reactive<MaterialInfoType>({
   infoDesc: "",
   type: "",
 });
-const show = (type: string, row?: MaterialInfoType) => {
-  materialCategoryList();
-  dialog.height = 360;
+//显示弹框
+const show = async (type: string, row?: MaterialInfoType) => {
+  imgurl.value = "";
+  //清空图片数据
+  fileList.value = [];
+  if (uploadRef.value) {
+    uploadRef.value?.clearFiles();
+  }
+  //获取物资分类
+  await materialCategoryList();
+  //设置弹框属性
   type == EditType.ADD
     ? (dialog.title = Title.ADD)
     : (dialog.title = Title.EDIT);
-  if (type == EditType.EDIT) {
-    //设置回显数据
+  dialog.height = 360;
+  dialog.width = 680;
+  //编辑，设置数据回显
+  if (row) {
     nextTick(() => {
-      global.$easyCopy(row, addModel);
+      Object.assign(addModel, row);
+      //设置图片回显
+      let img: any = {
+        name: "",
+        url: "",
+      };
+      img.url = addModel.image;
+      imgurl.value = addModel.image;
+      fileList.value.push(img);
     });
   }
   onShow();
-  addModel.type = type;
+  //清空表单
   addFormRef.value?.resetFields();
+  addModel.type = type;
 };
 //表单验证规则
 const rules = reactive({
