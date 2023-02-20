@@ -11,8 +11,8 @@ spring:
     password: root
   servlet:
     multipart:
-      max-file-size: 10MB     #单个文件最大限制
-      max-request-size: 50MB  #多个文件最大限制
+      max-file-size: 5MB     #单个文件最大限制
+      max-request-size: 10MB  #多个文件最大限制
 #mybatis plus配置
 mybatis-plus:
   configuration:
@@ -24,8 +24,8 @@ mybatis-plus:
 
 #图片上传
 web:
-  uploadpath: /www/wwwroot/images  #图片上传的路径
-  load-path: file:/www/wwwroot/images #图片访问、加载的路径
+  uploadpath: /www/wwwroot/images/  #图片上传的路径
+  load-path: file:/www/wwwroot/images/ #图片访问、加载的路径
 
 logging:
   pattern:

@@ -7,8 +7,9 @@
         select m.*, mc.category_name
         from material_info as m
         inner join material_category as mc on m.category_id = mc.category_id
+        where mc.category_id = m.category_id
         <if test="param.infoName != '' and param.infoName != null ">
-            m.infoName like CONCAT('%',#{param.infoName},'%')
+            and m.info_name like CONCAT('%',#{param.infoName},'%')
         </if>
     </select>
 </mapper>

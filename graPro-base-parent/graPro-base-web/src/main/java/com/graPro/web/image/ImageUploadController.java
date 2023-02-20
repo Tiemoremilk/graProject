@@ -44,6 +44,23 @@ public class ImageUploadController {
         }catch (Exception e){
             return  null;
         }
-        return ResultUtils.success("上传成功","/images" + Url);
+        return ResultUtils.success("上传成功","/桌面/graduationProject/images" + Url);
+//        return ResultUtils.success("上传成功","/www/wwwroot/images" + Url);
+    }
+
+    @RequestMapping("/deleteImage")
+    @ResponseBody
+    public ResultVo deleteImage(@RequestParam("imageName") String imageName) {
+        String path = webUploadpath + "/" + imageName;
+        File file = new File(path);
+        if (file.exists()) {
+            if (file.delete()) {
+                return ResultUtils.success("删除成功");
+            } else {
+                return ResultUtils.error("删除失败");
+            }
+        } else {
+            return ResultUtils.error("文件不存在");
+        }
     }
 }

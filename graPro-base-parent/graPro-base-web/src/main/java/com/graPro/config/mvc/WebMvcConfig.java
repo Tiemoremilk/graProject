@@ -1,11 +1,7 @@
 package com.graPro.config.mvc;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -31,21 +27,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //        source.registerCorsConfiguration("/**", corsConfiguration); // 4 对接口配置跨域设置
 //        return new CorsFilter(source);
 //    }
+
     /**
      * 跨域配置
+     *
      * @param registry
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOriginPatterns("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .maxAge(3600)
-                .allowCredentials(true);
+        registry.addMapping ("/**")
+                .allowedOriginPatterns ("*")
+                .allowedMethods ("*")
+                .allowedHeaders ("*")
+                .maxAge (3600)
+                .allowCredentials (true);
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/graduationProject/images/**").addResourceLocations(loadPath);
+        registry.addResourceHandler ("/桌面/graduationProject/images/**").addResourceLocations (loadPath);
+//        registry.addResourceHandler ("/www/wwwroot/images/**").addResourceLocations (loadPath);
     }
 }

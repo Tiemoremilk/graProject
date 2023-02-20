@@ -24,8 +24,8 @@ mybatis-plus:
 
 #图片上传
 web:
-  uploadpath: D://桌面/graduationProject/images  #图片上传的路径
-  load-path: file:D://桌面/graduationProject/images #图片访问、加载的路径
+  uploadpath: D:/桌面/graduationProject/images/  #图片上传的路径
+  load-path: file:D://桌面/graduationProject/images/ #图片访问、加载的路径
 
 
 logging:
