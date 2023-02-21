@@ -120,7 +120,7 @@ const router = createRouter({
       children: [
         {
           path: "/sendInfo",
-          component: () => import("@/views/pages/send/SendInfo.vue"),
+          component: () => import("@/views/pages/sendRoot/send/SendInfo.vue"),
           name: "sendInfo",
           meta: {
             title: "物资发放",
@@ -130,7 +130,8 @@ const router = createRouter({
         },
         {
           path: "/sendDetail",
-          component: () => import("@/views/pages/send_detail/SendDetail.vue"),
+          component: () =>
+            import("@/views/pages/sendRoot/sendDetail/SendDetail.vue"),
           name: "sendDetail",
           meta: {
             title: "发放记录",
@@ -152,7 +153,7 @@ const router = createRouter({
       children: [
         {
           path: "/intoInfo",
-          component: () => import("@/views/pages/into/IntoInfo.vue"),
+          component: () => import("@/views/pages/intoRoot/into/IntoInfo.vue"),
           name: "intoInfo",
           meta: {
             title: "物资入库",
@@ -162,7 +163,8 @@ const router = createRouter({
         },
         {
           path: "/intoDetail",
-          component: () => import("@/views/pages/into_detail/IntoDetail.vue"),
+          component: () =>
+            import("@/views/pages/intoRoot/into_detail/IntoDetail.vue"),
           name: "intoDetail",
           meta: {
             title: "入库记录",

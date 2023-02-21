@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import "@/assets/elementPlusBase.scss";
+
 import useTable from "@/composables/materialCategory/useTable";
 import useMaterialCategory from "@/composables/materialCategory/useMaterialCategory";
 import AddmaterialCategory from "./AddmaterialCategory.vue";

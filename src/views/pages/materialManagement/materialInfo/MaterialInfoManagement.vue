@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import "@/assets/elementPlusBase.scss";
+
 import useMaterialInfo from "@/composables/materialInfo/useMaterialInfo";
 import useTable from "@/composables/materialInfo/useTable";
 import { Search, Edit, Plus, Refresh, Delete } from "@element-plus/icons-vue";

@@ -93,7 +93,7 @@ import { Edit, Plus, Delete } from "@element-plus/icons-vue";
 import useMenu from "@/composables/menu/useMenu";
 import AddMenu from "./AddMenu.vue";
 import useTable from "@/composables/menu/useTable";
-import "@/assets/elementPlusBase.scss";
+
 const { tableList, getList, tableHeight, refresh } = useTable();
 const { addBtn, editBtn, deleteBtn, addRef } = useMenu(refresh);
 </script>

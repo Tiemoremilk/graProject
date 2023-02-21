@@ -267,7 +267,4 @@ defineExpose({
 </script>
 
 <style>
-[w-full=""] {
-  width: 100%;
-}
 </style>

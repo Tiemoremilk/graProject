@@ -161,7 +161,7 @@
 </template>
 
 <script setup lang="ts">
-import "@/assets/elementPlusBase.scss";
+
 import {
   Search,
   Edit,
