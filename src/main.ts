@@ -12,11 +12,14 @@ import messageBox from "./utils/messageBox";
 //快速复制
 import easyCopy from "./utils/easyCopy";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
+// 导入入口文件
+import echarts from "@/echarts";
+
 const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
-
+app.provide("$echarts", echarts);
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus, {

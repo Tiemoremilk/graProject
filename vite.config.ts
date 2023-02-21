@@ -11,7 +11,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    chunkSizeWarningLimit: 1500,
+    chunkSizeWarningLimit: 3000,
   },
   // eslint-disable-next-line no-sparse-arrays
   plugins: [

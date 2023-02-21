@@ -164,7 +164,7 @@ const router = createRouter({
         {
           path: "/intoDetail",
           component: () =>
-            import("@/views/pages/intoRoot/into_detail/IntoDetail.vue"),
+            import("@/views/pages/intoRoot/intoDetail/IntoDetail.vue"),
           name: "intoDetail",
           meta: {
             title: "入库记录",
