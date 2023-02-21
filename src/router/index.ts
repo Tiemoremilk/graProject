@@ -108,6 +108,70 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: "/sendRoot",
+      component: Layout,
+      name: "sendRoot",
+      meta: {
+        title: "发放管理",
+        icon: "Setting",
+        roles: ["sys:sendRoot"],
+      },
+      children: [
+        {
+          path: "/sendInfo",
+          component: () => import("@/views/pages/send/SendInfo.vue"),
+          name: "sendInfo",
+          meta: {
+            title: "物资发放",
+            icon: "UserFilled",
+            roles: ["sys:sendInfo"],
+          },
+        },
+        {
+          path: "/sendDetail",
+          component: () => import("@/views/pages/send_detail/SendDetail.vue"),
+          name: "sendDetail",
+          meta: {
+            title: "发放记录",
+            icon: "Wallet",
+            roles: ["sys:sendDetail"],
+          },
+        },
+      ],
+    },
+    {
+      path: "/intoRoot",
+      component: Layout,
+      name: "intoRoot",
+      meta: {
+        title: "物资入库",
+        icon: "Wallet",
+        roles: ["sys:intoRoot"],
+      },
+      children: [
+        {
+          path: "/intoInfo",
+          component: () => import("@/views/pages/into/IntoInfo.vue"),
+          name: "intoInfo",
+          meta: {
+            title: "物资入库",
+            icon: "UserFilled",
+            roles: ["sys:intoInfo"],
+          },
+        },
+        {
+          path: "/intoDetail",
+          component: () => import("@/views/pages/into_detail/IntoDetail.vue"),
+          name: "intoDetail",
+          meta: {
+            title: "入库记录",
+            icon: "Wallet",
+            roles: ["sys:intoDetail"],
+          },
+        },
+      ],
+    },
   ],
 });
 

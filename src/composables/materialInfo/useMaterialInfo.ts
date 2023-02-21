@@ -27,7 +27,6 @@ export default function useMaterialInfo(refresh: FuncList) {
   const deleteBtn = async (row: MaterialInfoType) => {
     const confirm = await global.$messageBox("确定删除该条数据么", "提示");
     if (confirm) {
-      // await removeImg();
       const res: any = await deleteApi(row.infoId);
       if (res && res.code == 200) {
         ElMessage({

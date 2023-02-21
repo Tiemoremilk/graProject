@@ -109,8 +109,11 @@
                 </template>
               </el-upload>
               <el-dialog v-model="dialogVisible">
-                <img w-full :src="dialogImageUrl" alt="Preview Image" />
-              </el-dialog> </el-form-item
+                <img
+                  w-full
+                  :src="dialogImageUrl"
+                  alt="Preview Image"
+                /> </el-dialog></el-form-item
           ></el-col>
         </el-row>
       </el-form>
@@ -263,4 +266,8 @@ defineExpose({
 });
 </script>
 
-<style scoped></style>
+<style>
+[w-full=""] {
+  width: 100%;
+}
+</style>

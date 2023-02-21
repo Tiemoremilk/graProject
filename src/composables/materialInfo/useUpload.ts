@@ -28,7 +28,7 @@ export default function useUpload() {
   };
   //图片上传
   const uploadFile = async (file: any) => {
-    console.log(file);
+    // console.log(file);
     const typeArr = ["image/png", "image/gif", "image/jpeg", "image/jpg"];
     const isLt2M = file.size / 1024 / 1024 < 5;
     const isImg = typeArr.indexOf(file.raw.type) !== -1;
@@ -47,12 +47,13 @@ export default function useUpload() {
     console.log(file.raw);
     const res = await uploadImageApi(formData);
     if (res && res.code == 200 && res.data) {
-      console.log(res.data);
+      // console.log(res.data);
       imgurl.value = process.env.BASE_API + res.data;
       imageName.value = res.data.substring(res.data.lastIndexOf("/") + 1);
     }
   };
   const removeImg = async () => {
+    console.log(imageName.value);
     const formData = new FormData();
     formData.append("imageName", imageName.value);
     await deleteImageApi(formData);

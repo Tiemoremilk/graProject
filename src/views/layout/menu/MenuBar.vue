@@ -118,6 +118,70 @@ let menuList = reactive([
       },
     ],
   },
+  {
+    path: "/sendRoot",
+    component: "Layout",
+    name: "sendRoot",
+    meta: {
+      title: "物资发放",
+      icon: "Wallet",
+      roles: ["sys:sendRoot"],
+    },
+    children: [
+      {
+        path: "/sendInfo",
+        component: "/send/SendInfo",
+        name: "sendInfo",
+        meta: {
+          title: "物资发放",
+          icon: "UserFilled",
+          roles: ["sys:sendInfo"],
+        },
+      },
+      {
+        path: "/sendDetail",
+        component: "/send_detail/SendDetail",
+        name: "sendDetail",
+        meta: {
+          title: "发放记录",
+          icon: "Wallet",
+          roles: ["sys:sendDetail"],
+        },
+      },
+    ],
+  },
+  {
+    path: "/intoRoot",
+    component: "Layout",
+    name: "intoRoot",
+    meta: {
+      title: "物资入库",
+      icon: "Wallet",
+      roles: ["sys:intoRoot"],
+    },
+    children: [
+      {
+        path: "/intoInfo",
+        component: "/into/IntoInfo",
+        name: "sendInfo",
+        meta: {
+          title: "物资入库",
+          icon: "UserFilled",
+          roles: ["sys:intoInfo"],
+        },
+      },
+      {
+        path: "/intoDetail",
+        component: "/into_detail/IntoDetail",
+        name: "intoDetail",
+        meta: {
+          title: "入库记录",
+          icon: "Wallet",
+          roles: ["sys:intoDetail"],
+        },
+      },
+    ],
+  },
 ]);
 </script>
 <style scoped lang="scss">
