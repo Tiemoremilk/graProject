@@ -3,14 +3,6 @@
 </template>
 
 <style lang="scss">
-.el-button {
-  --el-button-hover-text-color: #87510f;
-  --el-button-active-text-color: #e28007;
-  --el-button-active-border-color: #ec9a46;
-  --el-button-hover-bg-color: #f0e8e0;
-  --el-button-hover-border-color: #eed5bb;
-}
-
 .el-input {
   --el-input-focus-border-color: #ec9a46 !important;
 }

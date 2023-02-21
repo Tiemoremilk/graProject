@@ -14,8 +14,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="searchBtn" :icon="Search">搜索</el-button>
-        <el-button @click="reset" :icon="Refresh">重置</el-button>
+        <el-button @click="searchBtn" color="#FFF" :icon="Search"
+          >搜索</el-button
+        >
+        <el-button @click="reset" color="#FFF" :icon="Refresh">重置</el-button>
         <el-button @click="addBtn" color="#A78B7E" plain :icon="Plus"
           >新增</el-button
         >
@@ -26,7 +28,7 @@
       <el-table-column prop="image" width="90" label="物资图片" align="center">
         <template #default="scope">
           <el-image
-            style="width: 60px; height: 60px;"
+            style="width: 60px; height: 60px"
             :src="scope.row.image"
           ></el-image>
         </template>
@@ -76,7 +78,6 @@
 </template>
 
 <script setup lang="ts">
-
 import useMaterialInfo from "@/composables/materialInfo/useMaterialInfo";
 import useTable from "@/composables/materialInfo/useTable";
 import { Search, Edit, Plus, Refresh, Delete } from "@element-plus/icons-vue";
@@ -101,4 +102,4 @@ const reset = () => {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

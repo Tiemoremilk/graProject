@@ -20,8 +20,10 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="searchBtn" :icon="Search">搜索</el-button>
-        <el-button @click="reset" :icon="Refresh">重置</el-button>
+        <el-button @click="searchBtn" color="#FFF" :icon="Search"
+          >搜索</el-button
+        >
+        <el-button @click="reset" color="#FFF" :icon="Refresh">重置</el-button>
         <el-button @click="addBtn" color="#A78B7E" plain :icon="Plus"
           >新增</el-button
         >
@@ -161,7 +163,6 @@
 </template>
 
 <script setup lang="ts">
-
 import {
   Search,
   Edit,

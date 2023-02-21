@@ -4,6 +4,7 @@
     "vue.vscode-typescript-vue-plugin",
     "saekiraku.rainbow-fart",
     "ms-ceintl.vscode-language-pack-zh-hans",
-    "github.copilot"
+    "github.copilot",
+    "adpyke.codesnap"
   ]
 }

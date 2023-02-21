@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import type { EChartsOption } from "echarts/types/dist/shared";
-import echarts from "@/echarts";
+import * as echarts from "echarts";
 
 const chartContainer = ref<HTMLElement | undefined>();
 var option: EChartsOption;
