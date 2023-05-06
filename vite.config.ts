@@ -30,7 +30,6 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    ,
     vue(),
     vueJsx(),
   ],
@@ -54,7 +53,7 @@ export default defineConfig({
       /**dev */
       // BASE_API: "http://localhost:8085",
       /**pro */
-      BASE_API: "http://47.113.216.131:8085/",
+      BASE_API: "http://api.kdznf.cloud/",
     },
   },
 });
