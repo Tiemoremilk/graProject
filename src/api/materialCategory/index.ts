@@ -1,28 +1,26 @@
-import type {
-  ListParam,
-  MaterialCategoryType,
-} from "@/type/materialCategoryModel";
+import type { ListParam, MaterialCategoryType } from "@/type/materialCategoryModel";
 import ApiService from "@/utils/request";
+
 /**
  * 列表查询
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
 export const getListApi = (params: ListParam) => {
   return ApiService.get("api/materialCategory/materialCategoryList", params);
 };
 /**
  * 新增
- * @param data 
- * @returns 
+ * @param data
+ * @returns
  */
 export const addApi = (data: MaterialCategoryType) => {
   return ApiService.post("/api/materialCategory", data);
 };
 /**
  * 编辑
- * @param data 
- * @returns 
+ * @param data
+ * @returns
  */
 export const editApi = (data: MaterialCategoryType) => {
   return ApiService.put("/api/materialCategory", data);

@@ -77,6 +77,30 @@
   transition: none !important;
 }
 
+.el-select {
+  --el-select-input-focus-border-color: #ec9a46 !important;
+
+  .el-input.is-focus .el-input__wrapper {
+    box-shadow: 0 0 0 1px #ec9a46 inset !important;
+  }
+}
+
+.el-select-dropdown__item.selected,
+.el-cascader-node.in-active-path,
+.el-cascader-node.is-active,
+.el-drawer__close-btn:hover i {
+  color: #ec9a46 !important;
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+  color: #7b6b62 !important;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: #ec9a46 !important;
+  background: #ec9a46 !important;
+}
+
 // upload预览图片过大
 [w-full=""] {
   width: 100%;

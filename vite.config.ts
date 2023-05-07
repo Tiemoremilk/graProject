@@ -40,13 +40,13 @@ export default defineConfig({
   },
   server: {
     /* 自动打开浏览器 */
-    open: false,
+    open: true,
     /* 设置为0.0.0.0则所有的地址均能访问 */
     host: "0.0.0.0",
     /* 端口号 */
     port: 5731,
     /**代码热更新 */
-    hmr: true,
+    hmr: true
   },
   define: {
     "process.env": {

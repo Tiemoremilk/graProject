@@ -39,13 +39,18 @@
           <el-input v-model="addModel.phone"></el-input>
         </el-form-item>
         <el-form-item label="物资明细" size="default">
-          <el-button size="default" :icon="EditPen" @click=""
-            >选择物资</el-button
+          <el-button
+            size="default"
+            color="#FFF"
+            :icon="List"
+            @click="selectInfo"
+          >选择物资
+          </el-button
           >
         </el-form-item>
         <el-form-item>
-          <el-button color="#F5F0EA">取消</el-button>
-          <el-button color="#7A6A61" @click="onSubmit">确定 </el-button>
+          <el-button color="#F5F0EA" @click="cancel">取消</el-button>
+          <el-button color="#7A6A61" @click="onSubmit">确定</el-button>
         </el-form-item>
       </el-form>
     </el-aside>
@@ -54,13 +59,49 @@
       <el-divider />
     </el-main>
   </el-container>
+  <el-drawer custom-class="faDrawer" v-model="drawer" direction="rtl">
+    <template #title>
+      <el-select v-model="categoryId" placeholder="Select" size="default">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+      <el-input
+        style="width: 30%; margin-left: 20px"
+        placeholder="请输入物资名称"
+      ></el-input>
+      <el-button
+        style="margin: 0px 20px"
+        :icon="Search"
+        color="#DCDFE6"
+        size="default"
+        @click=""
+      >搜索
+      </el-button
+      >
+
+    </template>
+    <template #default>
+      <div>物资列表</div>
+    </template>
+  </el-drawer>
 </template>
 
 <script setup lang="ts">
 import { nextTick, onMounted, reactive, ref } from "vue";
 import { EluiChinaAreaDht } from "elui-china-area-dht";
+import { List, Search } from "@element-plus/icons-vue";
+import type { FormInstance } from "element-plus";
+
 const chinaData = new EluiChinaAreaDht.ChinaArea().chinaAreaflat;
 const address = ref([]);
+const drawer = ref(false);
+const categoryId = ref("");
+//表单ref属性
+const addRef = ref<FormInstance>();
 //表单对象
 const addModel = reactive({
   type: "",
@@ -69,8 +110,30 @@ const addModel = reactive({
   name: "",
   phone: "",
   email: "",
-  infos: [],
+  infos: []
 });
+const options = [
+  {
+    value: "Option1",
+    label: "Option1"
+  },
+  {
+    value: "Option2",
+    label: "Option2"
+  },
+  {
+    value: "Option3",
+    label: "Option3"
+  },
+  {
+    value: "Option4",
+    label: "Option4"
+  },
+  {
+    value: "Option5",
+    label: "Option5"
+  }
+];
 const onChange = (e: any) => {
   const economize = chinaData[e[0]]?.label ?? "";
   const market = chinaData[e[1]]?.label ?? "";
@@ -78,14 +141,29 @@ const onChange = (e: any) => {
   addModel.province = economize + "/" + market + "/" + distinguish;
   console.log(economize, market, distinguish);
 };
+const selectInfo = () => {
+  drawer.value = true;
+};
+//入库提交
+const commit = () => {
+  console.log(addModel);
+  // addRef.value?.resetFields();
+  // router.push({name:'intoDetail'})
+};
+//取消
+const cancel = () => {
+  address.value = [];
+  addModel.province = "";
+  addRef.value?.resetFields();
+};
 //表单验证规则
 const rules = reactive({
   type: [
     {
       required: true,
       trigger: "blur",
-      message: "请选择入库类型",
-    },
+      message: "请选择入库类型"
+    }
   ],
   province: [
     {
