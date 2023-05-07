@@ -10,4 +10,6 @@ public class MaterialInfoParam {
     private Long pageSize;
     //查询关键字
     private String infoName;
+    //分类
+    private Long categoryId;
 }

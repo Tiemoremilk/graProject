@@ -18,6 +18,7 @@ public class MaterialInfo {
     private String specs;
     private String unit;
     private String infoDesc;
+    private Integer store;
     @TableField(exist = false)
     private String categoryName;
 }
