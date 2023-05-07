@@ -92,6 +92,10 @@
   color: #ec9a46 !important;
 }
 
+.el-radio__inner:hover {
+  border-color: #ec9a46 !important;
+}
+
 .el-radio__input.is-checked + .el-radio__label {
   color: #7b6b62 !important;
 }

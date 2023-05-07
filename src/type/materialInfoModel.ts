@@ -15,6 +15,7 @@ export type MaterialInfoType = {
   unit: string;
   infoDesc: string;
   type: string;
+  num?: number
 };
 //物资分类下拉的选择数据类型
 export type SelectType = {
