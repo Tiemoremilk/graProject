@@ -37,6 +37,7 @@
       <el-table-column prop="infoName" label="物资分类名称"> </el-table-column>
       <el-table-column prop="specs" label="规格"> </el-table-column>
       <el-table-column prop="unit" label="单位"> </el-table-column>
+      <el-table-column prop="store" label="库存"></el-table-column>
       <el-table-column label="操作" align="center" width="200">
         <template #default="scope">
           <el-button
@@ -80,7 +81,7 @@
 <script setup lang="ts">
 import useMaterialInfo from "@/composables/materialInfo/useMaterialInfo";
 import useTable from "@/composables/materialInfo/useTable";
-import { Search, Edit, Plus, Refresh, Delete } from "@element-plus/icons-vue";
+import { Delete, Edit, Plus, Refresh, Search } from "@element-plus/icons-vue";
 import { ref } from "vue";
 import AddMaterialInfo from "./AddMaterialInfo.vue";
 

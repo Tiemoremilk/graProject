@@ -1,4 +1,4 @@
-import type { AddInfoType, SelectMaterial } from "@/type/intoRoot";
+import type { AddInfoType, SelectMaterial } from "@/type/intoRootModel";
 import type { Ref } from "vue";
 import { nextTick, onMounted, reactive, ref } from "vue";
 import { getMaterialInfoSelectList } from "@/api/intoRoot/index";

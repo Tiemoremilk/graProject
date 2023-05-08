@@ -1,45 +1,53 @@
 <template>
-  <el-container id="container" :style="{ height: mainHeight + 'px' }">
-    <el-aside width="30%" class="asideContainer">
-      <div class="title">入库信息</div>
+  <el-container class="mainclass" :style="{ height: mainHeight + 'px' }">
+    <el-aside width="30%" class="left-side">
+      <div class="title">发放信息</div>
       <el-divider />
       <el-form
+        style="padding: 20px"
         :model="addModel"
         ref="addRef"
         :rules="rules"
         label-width="80px"
-        :inline="false"
-        size="normal"
+        size="default"
       >
-        <el-form-item prop="type" label="入库类型">
+        <el-form-item prop="type" label="领取类型">
           <el-radio-group v-model="addModel.type">
-            <el-radio :label="1">捐赠</el-radio>
-            <el-radio :label="2">下拨</el-radio>
-            <el-radio :label="3">采购</el-radio>
-            <el-radio :label="4">借用</el-radio>
+            <el-radio :label="1">政府</el-radio>
+            <el-radio :label="2">医院</el-radio>
+            <el-radio :label="3">小区</el-radio>
+            <el-radio :label="4">个人</el-radio>
+            <el-radio :label="5">其他</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="省份" size="default" prop="province" class="cascader">
+        <el-form-item prop="type" label="紧急程度">
+          <el-radio-group v-model="addModel.doType">
+            <el-radio :label="1">不急</el-radio>
+            <el-radio :label="2">紧急</el-radio>
+            <el-radio :label="3">特急</el-radio>
+            <el-radio :label="4">超急</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item prop="province" label="省份" size="default">
           <elui-china-area-dht
             v-model="address"
-            placeholder="请选择省市区"
             isall
             @change="onChange"
           ></elui-china-area-dht>
         </el-form-item>
-        <el-form-item label="详细来源" prop="detailSource" size="default">
+        <el-form-item prop="detailSource" label="详细地址" size="default">
           <el-input v-model="addModel.detailSource"></el-input>
         </el-form-item>
-        <el-form-item label="联系人" prop="name" size="default">
+        <el-form-item prop="name" label="联系人" size="default">
           <el-input v-model="addModel.name"></el-input>
+        </el-form-item>
+        <el-form-item prop="phone" label="联系电话" size="default">
+          <el-input v-model="addModel.phone"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" prop="email" size="default">
           <el-input v-model="addModel.email"></el-input>
         </el-form-item>
-        <el-form-item label="联系电话" prop="phone" size="default">
-          <el-input v-model="addModel.phone"></el-input>
-        </el-form-item>
-        <el-form-item label="物资明细" size="default">
+        <el-form-item label="选择物资" prop="email" size="default">
           <el-button
             size="default"
             color="#FFF"
@@ -51,11 +59,11 @@
         </el-form-item>
         <el-form-item>
           <el-button color="#F5F0EA" @click="cancel">取消</el-button>
-          <el-button color="#7A6A61" @click="onSubmit">确定</el-button>
+          <el-button color="#7A6A61" @click="onSubmit">发放</el-button>
         </el-form-item>
       </el-form>
     </el-aside>
-    <el-main class="mainContainer">
+    <el-main class="right-main">
       <div class="title">
         物资信息
       </div>
@@ -92,7 +100,6 @@
           <template #default="scope">
             <el-button
               @click="deleteAddBtn(scope.row)"
-              plain
               type="danger"
               :icon="Delete"
               size="default"
@@ -104,7 +111,12 @@
       </el-table>
     </el-main>
   </el-container>
-  <el-drawer custom-class="faDrawer" v-model="drawer" direction="rtl" size="35%">
+  <el-drawer
+    size="35%"
+    custom-class="faDrawer"
+    v-model="drawer"
+    direction="rtl"
+  >
     <template #title>
       <el-select v-model="selectParm.categoryId" placeholder="请选择物资类型" size="default">
         <el-option
@@ -122,14 +134,14 @@
       <el-button
         style="margin: 0px 2px 0 10px"
         :icon="Search"
-        color="#DCDFE6"
+        color="#FFF"
         size="default"
         @click="searchSelect"
       >搜索
       </el-button>
       <el-button
         :icon="Refresh"
-        color="#DCDFE6"
+        color="#FFF"
         size="default"
         @click="resetSelect"
       >
@@ -137,8 +149,18 @@
 
     </template>
     <template #default>
-      <el-table :data="selectTable.list" :height="selectTableHeight" border stripe>
-        <el-table-column prop="image" width="90" label="物资图片" align="center">
+      <el-table
+        :height="selectTableHeight"
+        :data="selectTable.list"
+        border
+        stripe
+      >
+        <el-table-column
+          prop="image"
+          width="90"
+          label="物资图片"
+          align="center"
+        >
           <template #default="scope">
             <el-image
               style="width: 60px; height: 60px; border-radius: 50%"
@@ -151,48 +173,72 @@
         <el-table-column prop="unit" label="单位"></el-table-column>
         <el-table-column label="操作" align="center" width="110">
           <template #default="scope">
-            <el-button type="primary" color="#BB9D8E" :icon="Plus" size="default" @click="addBtn(scope.row)">加入
-            </el-button>
+            <el-button
+              color="#9E8578"
+              :icon="Plus"
+              plain
+              size="default"
+              @click="addBtn(scope.row)"
+            >加入
+            </el-button
+            >
           </template>
         </el-table-column>
       </el-table>
+      <!-- 分页 -->
       <el-pagination
         @size-change="sizeChange"
         @current-change="currentChange"
-        v-model:current-page="selectParm.currentPage"
+        :current-page.sync="selectParm.currentPage"
         :page-sizes="[10, 20, 40, 80, 100]"
         :page-size="selectParm.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="selectParm.total"
         background
-      ></el-pagination>
+      >
+      </el-pagination>
     </template>
   </el-drawer>
 </template>
 
 <script setup lang="ts">
+import type { MaterialInfoType } from "@/type/materialInfoModel";
 import useSelectInfo from "@/composables/intoRoot/into/useSelectInfo";
-import infoSelectCategory from "@/composables/materialInfo/infoSelectCategory";
-import { nextTick, onMounted, reactive, ref } from "vue";
-import { EluiChinaAreaDht } from "elui-china-area-dht";
 import { Delete, List, Plus, Refresh, Search } from "@element-plus/icons-vue";
-import type { FormInstance } from "element-plus";
 import { ElMessage } from "element-plus";
+import { EluiChinaAreaDht } from "elui-china-area-dht";
+import { nextTick, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-
-
+import { intoSaveApi } from "@/api/intoRoot";
+import infoSelectCategory from "@/composables/materialInfo/infoSelectCategory";
+//物资信息
 const {
-  selectParm, selectTable, getSelectList, searchSelect, resetSelect, sizeChange,
-  currentChange, selectTableHeight, addBtn, addTableData, deleteAddBtn
+  addTableData,
+  addBtn,
+  selectTableHeight,
+  selectParm,
+  selectTable,
+  getSelectList,
+  resetSelect,
+  searchSelect,
+  sizeChange,
+  currentChange
 } = useSelectInfo();
-const { materialCategoryData, materialCategoryList } = infoSelectCategory();
 const router = useRouter();
 const chinaData = new EluiChinaAreaDht.ChinaArea().chinaAreaflat;
-const address = ref([]);
+//物资分类
+const {
+  materialCategoryData,
+  materialCategoryList
+} = infoSelectCategory();
+//控制抽屉布局的显示和影藏
 const drawer = ref(false);
-const categoryId = ref("");
 //表单ref属性
-const addRef = ref<FormInstance>();
+const addRef = ref();
+//省市区数据
+const address = ref([]);
+//定义容器的高度
+const mainHeight = ref(0);
 //表单对象
 const addModel = reactive({
   type: "",
@@ -203,40 +249,6 @@ const addModel = reactive({
   email: "",
   infos: []
 });
-const onChange = (e: any) => {
-  const economize = chinaData[e[0]]?.label ?? "";
-  const market = chinaData[e[1]]?.label ?? "";
-  const distinguish = chinaData[e[2]]?.label ?? "";
-  addModel.province = economize + "/" + market + "/" + distinguish;
-  console.log(economize, market, distinguish);
-};
-const selectInfo = async () => {
-  await materialCategoryList();
-  await getSelectList();
-  drawer.value = true;
-};
-//入库提交
-const onSubmit = () => {
-  if (addTableData.list.length == 0) {
-    ElMessage.warning("请选择物资信息!");
-    return;
-  }
-  addRef.value?.validate((val) => {
-    if (val) {
-      addModel.infos = addTableData.list as any;
-      router.push({ name: "intoDetail" });
-      addRef.value?.resetFields();
-    }
-  });
-};
-const change = () => {
-};
-//取消
-const cancel = () => {
-  address.value = [];
-  addModel.province = "";
-  addRef.value?.resetFields();
-};
 //表单验证规则
 const rules = reactive({
   type: [
@@ -278,41 +290,99 @@ const rules = reactive({
     {
       required: true,
       trigger: "blur",
-      message: "请填写邮箱",
+      message: "请填写邮箱"
     },
   ],
 });
-
-const mainHeight = ref(0);
+//计算容器高度
 onMounted(() => {
   nextTick(() => {
     mainHeight.value = window.innerHeight - 100;
   });
 });
+//省市区切换事件
+const onChange = (e: any) => {
+  console.log(e);
+  const one = chinaData[e[0]].label;
+  const two = chinaData[e[1]].label;
+  const three = chinaData[e[2]].label;
+  addModel.province = one + "/" + two + "/" + three;
+  console.log(one, two, three);
+};
+//选择物资点击事件
+const selectInfo = async () => {
+  //获取分类
+  await materialCategoryList();
+  //获取物资信息
+  await getSelectList();
+  drawer.value = true;
+};
+//数量改变触发
+const change = () => {
+
+};
+//删除
+const deleteAddBtn = (row: MaterialInfoType) => {
+  addTableData.list = addTableData.list.filter(item => item.infoId != row.infoId);
+};
+//表单提交
+const onSubmit = () => {
+  if (addTableData.list.length == 0) {
+    ElMessage.warning("请选择物资信息!");
+    return;
+  }
+  addRef.value?.validate(async (valid) => {
+    if (valid) {
+      addModel.infos = addTableData.list as any;
+      console.log(addModel);
+      let res: any = await intoSaveApi(addModel);
+      if (res && res.code == 200) {
+        ElMessage.success(res.msg);
+        //跳转到入库记录
+        router.push({ name: "intoDetail" });
+      }
+    }
+  });
+};
 </script>
 
-<style scoped>
-#container {
-    padding: 20px 10px;
+<style lang="scss">
+.mainclass {
+  padding: 20px 10px;
+}
 
-    :deep(.el-cascader) {
-        width: 100%;
-    }
+.left-side {
+  border-right: 1px solid #dedfe6;
 }
-.asideContainer {
-  min-width: 250px;
-  border-right: 1px solid #e4e7ed;
+
+.right-main {
+  padding: 0px 0px 0px 10px;
 }
-.mainContainer {
-    padding: 0px 0px 0px 10px;
-}
+
 .title {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 400;
-  cursor: text;
-  letter-spacing: 2px;
-  font-size: 18px;
+}
+
+:deep(.el-cascader) {
+  width: 100%;
+}
+
+.faDrawer {
+  .el-drawer__header {
+    font-size: 16px;
+    padding: 9px;
+    margin-bottom: 0px !important;
+    background-color: #9E8578 !important;
+
+    .el-drawer__close {
+      color: #fff !important;
+    }
+  }
+}
+
+.el-cascader {
+  width: 100%;
 }
 </style>
