@@ -29,6 +29,7 @@
         <commons-collections.version>3.2.2</commons-collections.version>
         <commons-io.version>2.6</commons-io.version>
         <mysql-connection.version>8.0.21</mysql-connection.version>
+        <jwt.version>3.10.3</jwt.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -57,13 +58,13 @@
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
-            <!--kaptcha 图形验证码 -->
+<!--            kaptcha 图形验证码-->
             <dependency>
                 <groupId>com.github.penggle</groupId>
                 <artifactId>kaptcha</artifactId>
                 <version>${kaptcha.version}</version>
             </dependency>
-            <!-- JSON转换工具类依赖 -->
+<!--             JSON转换工具类依赖-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
@@ -89,6 +90,11 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${jwt.version}</version>
             </dependency>
 
 

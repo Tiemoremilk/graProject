@@ -1,6 +1,6 @@
 #端口号配置
 server:
-  port: 8085
+  port: 8086
 #数据库连接配置
 spring:
   datasource:
@@ -21,6 +21,15 @@ mybatis-plus:
     db-config:
       #配置mybatis plus 在更新时只更新非空和非NULL的字段
       update-strategy: not_empty
+
+#jwt配置
+jwt:
+  #颁发者
+  issuer: nifeng
+  #秘钥
+  secret: com.graPro
+  #30分钟过期
+  expiration: 30
 
 #图片上传
 web:
