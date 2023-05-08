@@ -10,6 +10,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: "/login",
+      component: () => import("@/views/login/index.vue"),
+      name: "login"
+    },
+    {
       path: "/",
       component: Layout,
       redirect: "/home",
@@ -176,5 +181,19 @@ const router = createRouter({
     },
   ],
 });
+router.beforeEach((to, from, next) => {
+  if (to.path === "/login") {
+    return next();
+  }
+  //说明用户访问的页面不是login 请求需要校验
+  //获取token数据.
+  const token = window.sessionStorage.getItem("token");
+  //if(token !==null && token.length>0)
+  //下列if 解释为: 如果token不为null
+  if (token) {
+    return next();
+  }
 
+  next("/login");
+});
 export default router;

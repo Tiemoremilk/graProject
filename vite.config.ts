@@ -51,9 +51,9 @@ export default defineConfig({
   define: {
     "process.env": {
       /**dev */
-      BASE_API: "http://localhost:8085"
+      // BASE_API: "http://localhost:8086"
       /**pro */
-      // BASE_API: "http://api.kdznf.cloud/",
+      BASE_API: "http://api.kdznf.cloud/"
     },
   },
 });

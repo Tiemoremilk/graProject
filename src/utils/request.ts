@@ -1,16 +1,13 @@
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosRequestHeaders,
-} from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import axios from "axios";
 import { ElMessage } from "element-plus";
 
 //axios请求配置
+// @ts-ignore
 const config = {
+  withCredentials: true,//解决sesson不一致的问题
   baseURL: process.env.BASE_API,
-  timeout: 10000,
+  timeout: 10000
 };
 //定义返回值类型
 export interface Result<T = any> {
