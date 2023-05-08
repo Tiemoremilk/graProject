@@ -118,7 +118,7 @@
     direction="rtl"
   >
     <template #title>
-      <el-select v-model="selectParm.categoryId" placeholder="请选择物资类型" size="default">
+      <el-select v-model="selectParam.categoryId" placeholder="请选择物资类型" size="default">
         <el-option
           v-for="item in materialCategoryData.list"
           :key="item.value"
@@ -127,7 +127,7 @@
         />
       </el-select>
       <el-input
-        v-model="selectParm.infoName"
+        v-model="selectParam.infoName"
         style="width: 30%; margin-left: 20px"
         placeholder="请输入物资名称"
       ></el-input>
@@ -189,11 +189,11 @@
       <el-pagination
         @size-change="sizeChange"
         @current-change="currentChange"
-        :current-page.sync="selectParm.currentPage"
+        v-model:current-page="selectParam.currentPage"
         :page-sizes="[10, 20, 40, 80, 100]"
-        :page-size="selectParm.pageSize"
+        :page-size="selectParam.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="selectParm.total"
+        :total="selectParam.total"
         background
       >
       </el-pagination>
@@ -209,14 +209,14 @@ import { ElMessage } from "element-plus";
 import { EluiChinaAreaDht } from "elui-china-area-dht";
 import { nextTick, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
-import { intoSaveApi } from "@/api/intoRoot";
 import infoSelectCategory from "@/composables/materialInfo/infoSelectCategory";
+import { sendApi } from "@/api/sendRoot";
 //物资信息
 const {
   addTableData,
   addBtn,
   selectTableHeight,
-  selectParm,
+  selectParam,
   selectTable,
   getSelectList,
   resetSelect,
@@ -247,53 +247,16 @@ const addModel = reactive({
   name: "",
   phone: "",
   email: "",
-  infos: []
+  infos: [],
+  doType: ""
 });
 //表单验证规则
-const rules = reactive({
-  type: [
-    {
-      required: true,
-      trigger: "blur",
-      message: "请选择入库类型"
-    }
-  ],
-  province: [
-    {
-      required: true,
-      trigger: "blur",
-      message: "请选择省市区",
-    },
-  ],
-  detailSource: [
-    {
-      required: true,
-      trigger: "blur",
-      message: "请填写详细来源",
-    },
-  ],
-  name: [
-    {
-      required: true,
-      trigger: "blur",
-      message: "请填写联系人",
-    },
-  ],
-  phone: [
-    {
-      required: true,
-      trigger: "blur",
-      message: "请填写联系电话",
-    },
-  ],
-  email: [
-    {
-      required: true,
-      trigger: "blur",
-      message: "请填写邮箱"
-    },
-  ],
-});
+
+const cancel = () => {
+  address.value = [];
+  addModel.province = "";
+  addRef.value?.resetFields();
+};
 //计算容器高度
 onMounted(() => {
   nextTick(() => {
@@ -303,11 +266,14 @@ onMounted(() => {
 //省市区切换事件
 const onChange = (e: any) => {
   console.log(e);
-  const one = chinaData[e[0]].label;
-  const two = chinaData[e[1]].label;
-  const three = chinaData[e[2]].label;
-  addModel.province = one + "/" + two + "/" + three;
-  console.log(one, two, three);
+  const economize = chinaData[e[0]].label;
+  const market = chinaData[e[1]].label;
+  const distinguish = chinaData[e[2]].label;
+  if (economize == "" && market == "" && distinguish == "") {
+    addModel.province = "全部";
+  } else {
+    addModel.province = economize + "/" + market + "/" + distinguish;
+  }
 };
 //选择物资点击事件
 const selectInfo = async () => {
@@ -331,19 +297,72 @@ const onSubmit = () => {
     ElMessage.warning("请选择物资信息!");
     return;
   }
-  addRef.value?.validate(async (valid) => {
+  //判断库存是否充足:找出数量大于库存的数据
+  console.log(addTableData.list);
+  let lessStore = addTableData.list.filter(item => (item.store as number) < (item.num as number))
+    .map(item => item.infoName).join(",");
+  console.log(lessStore);
+  if (lessStore) {
+    ElMessage.error("【" + lessStore + "】物资库存不足!");
+    return;
+  }
+  addRef.value?.validate(async (valid: any) => {
     if (valid) {
       addModel.infos = addTableData.list as any;
       console.log(addModel);
-      let res: any = await intoSaveApi(addModel);
+      let res: any = await sendApi(addModel);
       if (res && res.code == 200) {
         ElMessage.success(res.msg);
-        //跳转到入库记录
-        router.push({ name: "intoDetail" });
+        //跳转到发放记录
+        router.push({ name: "sendDetail" });
       }
     }
   });
 };
+const rules = reactive({
+  type: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "请选择入库类型"
+    }
+  ],
+  province: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "请选择省市区"
+    }
+  ],
+  detailSource: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "请填写详细来源"
+    }
+  ],
+  name: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "请填写联系人"
+    }
+  ],
+  phone: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "请填写联系电话"
+    }
+  ],
+  email: [
+    {
+      required: true,
+      trigger: "blur",
+      message: "请填写邮箱"
+    }
+  ]
+});
 </script>
 
 <style lang="scss">
@@ -365,7 +384,7 @@ const onSubmit = () => {
   align-items: center;
 }
 
-:deep(.el-cascader) {
+.el-cascader {
   width: 100%;
 }
 

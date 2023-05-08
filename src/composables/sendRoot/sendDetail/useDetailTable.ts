@@ -1,15 +1,16 @@
 import { nextTick, onMounted, reactive, ref } from "vue";
-import type { MaterialIntoParam } from "@/type/intoRootModel";
-import { applyApi, getIntoListApi } from "@/api/intoRoot";
-import { ElMessage } from "element-plus";
+
 import useInstance from "@/hooks/useInstance";
+import { ElMessage } from "element-plus";
+import type { MaterialSendParam } from "@/type/sendRootModel";
+import { getSendListApi, sendApply } from "@/api/sendRoot";
 
 export default function useDetailTable() {
   const { global } = useInstance();
   //表格高度
   const tableHeigth = ref(0);
   //列表参数
-  const listParam = reactive<MaterialIntoParam>({
+  const listParam = reactive<MaterialSendParam>({
     currentPage: 1,
     pageSize: 10,
     province: "",
@@ -24,7 +25,7 @@ export default function useDetailTable() {
   });
   //获取表格数据
   const getList = async () => {
-    const res: any = await getIntoListApi(listParam);
+    const res: any = await getSendListApi(listParam);
     if (res && res.code == 200) {
       tableList.list = res.data.records;
       listParam.total = res.data.total;
@@ -53,33 +54,35 @@ export default function useDetailTable() {
     listParam.currentPage = page;
     getList();
   };
-  //审核
-  const applyBtn = async (row: any) => {
-    if (row.status == "1") {
-      ElMessage.warning("信息已经审核，不要重复提交!");
-      return;
-    }
-    const res: any = await applyApi({
-      intoId: row.intoId,
-      status: "1"
-    });
-    if (res && res.code == 200) {
-      ElMessage.success(res.msg);
-      getList();
-    }
-
-  };
-//拒绝审核
+  //拒绝
   const rejectBtn = async (row: any) => {
     if (row.status == "1" || row.status == "2") {
-      ElMessage.warning("信息已经审核，不要重复提交!");
+      ElMessage.warning("该信息已经审核通过，不用重复审核!");
       return;
     }
-    const confirm = await global.$messageBox("请确定是否要拒绝入库", "提示");
+    const confirm = await global.$messageBox("请确定是否要拒绝发放", "提示");
     if (confirm) {
-      const res: any = await applyApi({
-        intoId: row.intoId,
+      let res: any = await sendApply({
+        intoId: row.sendId,
         status: "2"
+      });
+      if (res && res.code == 200) {
+        ElMessage.success(res.msg);
+        getList();
+      }
+    }
+  };
+  //同意
+  const applyBtn = async (row: any) => {
+    if (row.status == "1" || row.status == "2") {
+      ElMessage.warning("该信息已经审核通过，不用重复审核!");
+      return;
+    }
+    const confirm = await global.$messageBox("请确定是否要同意发放", "提示");
+    if (confirm) {
+      let res: any = await sendApply({
+        intoId: row.sendId,
+        status: "1"
       });
       if (res && res.code == 200) {
         ElMessage.success(res.msg);
@@ -102,7 +105,7 @@ export default function useDetailTable() {
     sizeChange,
     currentChange,
     tableHeigth,
-    applyBtn,
-    rejectBtn
+    rejectBtn,
+    applyBtn
   };
 }

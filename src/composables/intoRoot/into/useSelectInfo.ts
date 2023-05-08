@@ -12,7 +12,7 @@ export default function useSelectInfo() {
     list: []
   });
   //表格查询参数
-  const selectParm = reactive<SelectMaterial>({
+  const selectParam = reactive<SelectMaterial>({
     categoryId: "",
     currentPage: 1,
     pageSize: 10,
@@ -21,10 +21,10 @@ export default function useSelectInfo() {
   });
   //查询表格数据
   const getSelectList = async () => {
-    const res: any = await getMaterialInfoSelectList(selectParm);
+    const res: any = await getMaterialInfoSelectList(selectParam);
     if (res && res.code == 200) {
       selectTable.list = res.data.records;
-      selectParm.total = res.data.total;
+      selectParam.total = res.data.total;
     }
   };
   const addBtn = (row: MaterialInfoType) => {
@@ -48,18 +48,18 @@ export default function useSelectInfo() {
   };
   //重置
   const resetSelect = () => {
-    selectParm.categoryId = "";
-    selectParm.infoName = "";
+    selectParam.categoryId = "";
+    selectParam.infoName = "";
     getSelectList();
   };
   //页容量改变时触发
   const sizeChange = (size: number) => {
-    selectParm.pageSize = size;
+    selectParam.pageSize = size;
     getSelectList();
   };
   //页数改变触发
   const currentChange = (page: number) => {
-    selectParm.currentPage = page;
+    selectParam.currentPage = page;
     getSelectList();
   };
   const deleteAddBtn = (row: MaterialInfoType) => {
@@ -72,7 +72,7 @@ export default function useSelectInfo() {
   });
   return {
     selectTable,
-    selectParm,
+    selectParam,
     getSelectList,
     searchSelect,
     resetSelect,

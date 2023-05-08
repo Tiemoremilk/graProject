@@ -106,7 +106,7 @@
   </el-container>
   <el-drawer custom-class="faDrawer" v-model="drawer" direction="rtl" size="35%">
     <template #title>
-      <el-select v-model="selectParm.categoryId" placeholder="请选择物资类型" size="default">
+      <el-select v-model="selectParam.categoryId" placeholder="请选择物资类型" size="default">
         <el-option
           v-for="item in materialCategoryData.list"
           :key="item.value"
@@ -115,7 +115,7 @@
         />
       </el-select>
       <el-input
-        v-model="selectParm.infoName"
+        v-model="selectParam.infoName"
         style="width: 30%; margin-left: 20px"
         placeholder="请输入物资名称"
       ></el-input>
@@ -159,11 +159,11 @@
       <el-pagination
         @size-change="sizeChange"
         @current-change="currentChange"
-        v-model:current-page="selectParm.currentPage"
+        v-model:current-page="selectParam.currentPage"
         :page-sizes="[10, 20, 40, 80, 100]"
-        :page-size="selectParm.pageSize"
+        :page-size="selectParam.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="selectParm.total"
+        :total="selectParam.total"
         background
       ></el-pagination>
     </template>
@@ -183,7 +183,7 @@ import { intoSaveApi } from "@/api/intoRoot";
 
 
 const {
-  selectParm, selectTable, getSelectList, searchSelect, resetSelect, sizeChange,
+  selectParam, selectTable, getSelectList, searchSelect, resetSelect, sizeChange,
   currentChange, selectTableHeight, addBtn, addTableData, deleteAddBtn
 } = useSelectInfo();
 const { materialCategoryData, materialCategoryList } = infoSelectCategory();
@@ -328,4 +328,5 @@ onMounted(() => {
     letter-spacing: 2px;
     font-size: 18px;
 }
+
 </style>
