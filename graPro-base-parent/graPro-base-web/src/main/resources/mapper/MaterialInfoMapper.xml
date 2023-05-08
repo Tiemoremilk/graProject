@@ -21,4 +21,13 @@
             where info_id =#{item.infoId}
         </foreach>
     </update>
+    <update id="sendUpdateStore">
+        <foreach collection="list" item="item" index="index"  separator=";">
+            update material_info
+            <set>
+                store = store - #{item.store},
+            </set>
+            where info_id =#{item.infoId}
+        </foreach>
+    </update>
 </mapper>

@@ -24,4 +24,8 @@ public class MaterialInfoServiceImpl extends ServiceImpl<MaterialInfoMapper, Mat
     public void updateStore(List<InfoUpdateParam> list) {
         this.baseMapper.updateStore(list);
     }
+    @Override
+    public void sendUpdateStore(List<InfoUpdateParam> param) {
+        this.baseMapper.sendUpdateStore(param);
+    }
 }

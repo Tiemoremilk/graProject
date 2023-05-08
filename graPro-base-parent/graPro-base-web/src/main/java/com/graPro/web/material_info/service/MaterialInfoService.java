@@ -11,4 +11,5 @@ import java.util.List;
 public interface MaterialInfoService extends IService<MaterialInfo> {
     IPage<MaterialInfo> getList(MaterialInfoParam params);
     void updateStore(List<InfoUpdateParam> list);
+    void sendUpdateStore(List<InfoUpdateParam> param);
 }

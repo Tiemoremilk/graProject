@@ -12,4 +12,5 @@ import java.util.List;
 public interface MaterialInfoMapper extends BaseMapper<MaterialInfo> {
     IPage<MaterialInfo> getList(IPage<MaterialInfo> page,@Param("param")MaterialInfoParam param);
     void updateStore(@Param("list") List<InfoUpdateParam> list);
+    void sendUpdateStore(@Param("list") List<InfoUpdateParam> list);
 }
