@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/views/layout/Index.vue";
+import { loginStore } from "@/stores/login";
 
 const router = createRouter({
   // import.meta.env.MODE: {string} 应用运行的模式。
@@ -203,21 +204,21 @@ const router = createRouter({
     }
   ],
 });
-// router.beforeEach((to, from, next) => {
-//   const store = loginStore();
-//   if (to.path === "/login") {
-//     return next();
-//   }
-//   //说明用户访问的页面不是login 请求需要校验
-//   //获取token数据.
-//   const token = store.$state.token;
-//   console.log(token)
-//   //if(token !==null && token.length>0)
-//   //下列if 解释为: 如果token不为null
-//   if (token) {
-//     return next();
-//   }
-//
-//   next("/login");
-// });
+router.beforeEach((to, from, next) => {
+  const store = loginStore();
+  if (to.path === "/login") {
+    return next();
+  }
+  //说明用户访问的页面不是login 请求需要校验
+  //获取token数据.
+  const token = store.$state.token;
+  console.log(token);
+  //if(token !==null && token.length>0)
+  //下列if 解释为: 如果token不为null
+  if (token) {
+    return next();
+  }
+
+  next("/login");
+});
 export default router;
