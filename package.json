@@ -14,7 +14,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "axios": "^1.2.0",
-    "echarts": "^5.4.1",
+    "echarts": "^5.4.2",
     "element-plus": "^2.3.4",
     "elui-china-area-dht": "^2.0.0",
     "http": "^0.0.1-security",

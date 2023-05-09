@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Layout from "@/views/layout/Index.vue";
-import { loginStore } from "@/stores/login";
 
 const router = createRouter({
   // import.meta.env.MODE: {string} 应用运行的模式。
@@ -22,13 +21,13 @@ const router = createRouter({
       children: [
         {
           path: "/home",
-          component: () => import("@/views/pages/home/Home.vue"),
+          component: () => import("@/views/pages/home/Index.vue"),
           name: "home",
           meta: {
             title: "首页",
-            icon: "#icondashboard",
-          },
-        },
+            icon: "#icondashboard"
+          }
+        }
       ],
     },
     {
@@ -175,27 +174,50 @@ const router = createRouter({
           meta: {
             title: "入库记录",
             icon: "Wallet",
-            roles: ["sys:intoDetail"],
-          },
+            roles: ["sys:intoDetail"]
+          }
         },
       ],
     },
+    {
+      path: "/noticeRoot",
+      component: Layout,
+      name: "noticeRoot",
+      meta: {
+        title: "公告管理",
+        icon: "ChatDotSquare",
+        roles: ["sys:noticeRoot"]
+      },
+      children: [
+        {
+          path: "/notice",
+          component: () => import("@/views/pages/noticeRoot/Notice.vue"),
+          name: "notice",
+          meta: {
+            title: "公告列表",
+            icon: "InfoFilled",
+            roles: ["sys:notice"]
+          }
+        }
+      ]
+    }
   ],
 });
-router.beforeEach((to, from, next) => {
-  const store = loginStore();
-  if (to.path === "/login") {
-    return next();
-  }
-  //说明用户访问的页面不是login 请求需要校验
-  //获取token数据.
-  const token = store.$state.token;
-  //if(token !==null && token.length>0)
-  //下列if 解释为: 如果token不为null
-  if (token) {
-    return next();
-  }
-
-  next("/login");
-});
+// router.beforeEach((to, from, next) => {
+//   const store = loginStore();
+//   if (to.path === "/login") {
+//     return next();
+//   }
+//   //说明用户访问的页面不是login 请求需要校验
+//   //获取token数据.
+//   const token = store.$state.token;
+//   console.log(token)
+//   //if(token !==null && token.length>0)
+//   //下列if 解释为: 如果token不为null
+//   if (token) {
+//     return next();
+//   }
+//
+//   next("/login");
+// });
 export default router;

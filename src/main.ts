@@ -11,6 +11,7 @@ import messageBox from "./utils/messageBox";
 //快速复制
 import easyCopy from "./utils/easyCopy";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
+import * as echarts from "echarts";
 // 导入入口文件
 // import echarts from "@/echarts";
 
@@ -25,6 +26,7 @@ app.use(ElementPlus, {
   locale: zhCn,
 });
 //全局挂载
+app.config.globalProperties.$echarts = echarts;
 app.config.globalProperties.$messageBox = messageBox;
 app.config.globalProperties.$easyCopy = easyCopy;
 app.mount("#app");

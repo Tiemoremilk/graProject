@@ -15,11 +15,12 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { computed, reactive } from "vue";
 import MenuItem from "./MenuItem.vue";
 import MenuLogo from "./MenuLogo.vue";
 import { useRoute } from "vue-router";
 import { collapseStore } from "@/stores/collapse";
+
 const store = collapseStore();
 // eslint-disable-next-line vue/return-in-computed-property
 const stauts = computed(() => {
@@ -177,11 +178,33 @@ let menuList = reactive([
         meta: {
           title: "入库记录",
           icon: "Wallet",
-          roles: ["sys:intoDetail"],
-        },
+          roles: ["sys:intoDetail"]
+        }
       },
     ],
   },
+  {
+    path: "/noticeRoot",
+    component: "Layout",
+    name: "noticeRoot",
+    meta: {
+      title: "公告管理",
+      icon: "ChatDotSquare",
+      roles: ["sys:noticeRoot"]
+    },
+    children: [
+      {
+        path: "/notice",
+        component: "/notice/Index",
+        name: "notice",
+        meta: {
+          title: "公告列表",
+          icon: "InfoFilled",
+          roles: ["sys:notice"]
+        }
+      }
+    ]
+  }
 ]);
 </script>
 <style scoped lang="scss">
